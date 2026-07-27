@@ -1,0 +1,46 @@
+name: Continuous Integration & Quality Gate
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+jobs:
+  commitlint:
+    name: 📝 Commit Message Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Validate PR / Commit Messages
+        uses: wagoid/commitlint-github-action@v6
+
+  quality_gate:
+    name: 🛡️ TypeCheck, Knip & Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Strict TypeScript Compilation
+        run: bun run check
+
+      - name: Code Audit (Knip - Unused Code/Deps)
+        run: bun run knip
+
+      - name: Unit Tests
+        run: bun test
+
+      - name: Astro Web Build
+        run: bunx astro build

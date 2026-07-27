@@ -12,6 +12,11 @@
       "@miguelvivar/sunat-fe-client": ["../client/src/index.ts"]
     },
     "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "declaration": true,
     "outDir": "dist",
     "rootDir": "src",

@@ -1,0 +1,23 @@
+name: '💬 Pregunta / Consulta Técnica'
+description: Haz una pregunta sobre catálogos SUNAT, cálculo de IGV, configuración de certificados o integración.
+title: '💬 [PREGUNTA]: '
+labels: ['question']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Utiliza este formulario para consultas sobre integración, arquitectura o normativa SUNAT.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: ❓ ¿Cuál es tu pregunta?
+      description: Explica detalladamente tu duda.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 🔍 Contexto y Código Utilizado
+      description: Proporciona fragmentos de código o llamadas al CLI si es necesario.
