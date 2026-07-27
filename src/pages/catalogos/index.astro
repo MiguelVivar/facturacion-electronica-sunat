@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro';
+import { TIPOS_DOCUMENTO, TIPOS_DOCUMENTO_IDENTIDAD, MONEDAS, UNIDADES_MEDIDA, TIPOS_AFECTACION_IGV, MOTIVOS_NOTA_CREDITO, MOTIVOS_NOTA_DEBITO, TIPOS_OPERACION, LEYENDAS } from 'sunat-fe-core';
+
+const catalogos = [
+  { titulo: 'Catálogo 01 — Tipo de Documento', campo: 'tipoDoc', datos: TIPOS_DOCUMENTO },
+  { titulo: 'Catálogo 06 — Tipo de Documento de Identidad', campo: 'tipoDoc (cliente)', datos: TIPOS_DOCUMENTO_IDENTIDAD },
+  { titulo: 'Catálogo 02 — Moneda', campo: 'tipoMoneda', datos: MONEDAS },
+  { titulo: 'Catálogo 03 — Unidad de Medida', campo: 'unidad', datos: UNIDADES_MEDIDA },
+  { titulo: 'Catálogo 07 — Afectación IGV', campo: 'tipAfeIgv', datos: TIPOS_AFECTACION_IGV },
+  { titulo: 'Catálogo 09 — Motivo Nota de Crédito', campo: 'codMotivo', datos: MOTIVOS_NOTA_CREDITO },
+  { titulo: 'Catálogo 10 — Motivo Nota de Débito', campo: 'codMotivo', datos: MOTIVOS_NOTA_DEBITO },
+  { titulo: 'Catálogo 51 — Tipo de Operación', campo: 'tipoOperacion', datos: TIPOS_OPERACION },
+  { titulo: 'Catálogo 52 — Leyendas', campo: 'code', datos: LEYENDAS },
+];
+---
+<Base
+  title="Catálogos SUNAT — sunat-facturacion-electronica"
+  description="Los 9 catálogos SUNAT (tipo de documento, afectación IGV, unidad de medida, moneda, motivo de nota...) tal como los expone sunat-fe-core."
+  activo="catalogos"
+>
+
+  <section aria-labelledby="cat-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-12 sm:pt-16 md:pt-20 pb-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Catálogos</span>
+      <h1 id="cat-h" class="font-serif text-[clamp(1.9rem,4vw,2.9rem)] leading-[1.08] max-w-[24ch]">Nueve catálogos, un código exacto cada vez.</h1>
+      <p class="mt-4 max-w-[62ch] text-[1.02rem] leading-relaxed">Sacados en vivo de <span class="font-mono">sunat-fe-core</span> — la misma fuente que usa <span class="font-mono">sunat-fe catalogo</span> y la skill <a class="text-stamp-red underline" href="/arquitectura/">sunat-catalogos</a>. Ningún código está inventado: lo que no está aquí, no se asume.</p>
+    </div>
+  </section>
+
+  {catalogos.map((cat) => (
+    <section aria-label={cat.titulo}>
+      <div class="pane pane--paper">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">{cat.titulo}</span>
+        <table class="w-full border-collapse font-mono text-[0.85rem]">
+          <thead>
+            <tr>
+              <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">{cat.campo}</th>
+              <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cat.datos.map((entrada) => (
+              <tr>
+                <td class="py-1.5 px-1.5 border-b border-aged-rule text-stamp-red">{entrada.codigo}</td>
+                <td class="py-1.5 px-1.5 border-b border-aged-rule">{entrada.nombre}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  ))}
+
+  <section aria-label="cierre">
+    <div class="bg-paper px-6 sm:px-10 md:px-16 lg:px-20 py-14 md:py-20">
+      <p class="max-w-[58ch] leading-relaxed text-aged-rule">Fuente completa y autoritativa: <a class="text-stamp-red underline" href="https://cpe.sunat.gob.pe/" target="_blank" rel="noopener">cpe.sunat.gob.pe</a> — esto cubre el 95% de los comprobantes reales.</p>
+    </div>
+  </section>
+
+</Base>

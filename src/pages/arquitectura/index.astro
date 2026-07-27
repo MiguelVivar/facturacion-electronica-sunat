@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="Arquitectura — sunat-facturacion-electronica"
+  description="Cómo está dividido el proyecto: sub-skills por capa, monorepo de paquetes TypeScript, y el estado verificado de cada uno."
+  activo="arquitectura"
+>
+
+  <section aria-labelledby="arq-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-12 sm:pt-16 md:pt-20">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Arquitectura</span>
+      <h1 id="arq-h" class="font-serif text-[clamp(1.9rem,4vw,2.9rem)] leading-[1.08] max-w-[24ch]">Por capa, no por tipo de documento.</h1>
+      <p class="mt-4 max-w-[62ch] text-[1.02rem] leading-relaxed">Cuatro sub-skills y cinco paquetes de código, cada uno con una sola responsabilidad — para que un cambio en el cálculo del IGV no obligue a tocar el cliente SOAP.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="skills-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Sub-skills</span>
+      <h2 id="skills-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">Un índice, cuatro especialistas.</h2>
+    </div>
+    <div class="pane-row">
+      <div class="pane pane--console">
+        <div class="font-mono text-[0.88rem] leading-loose whitespace-pre-wrap"><span class="text-stamp-red">sunat-facturacion-electronica</span>  índice / router
+<span class="text-stamp-red">sunat-catalogos</span>              códigos de catálogo
+<span class="text-stamp-red">sunat-calculo</span>                montos / IGV
+<span class="text-stamp-red">sunat-comprobantes</span>           orquesta el flujo completo
+<span class="text-stamp-red">sunat-cli</span>                    CLI / paquete npm</div>
+      </div>
+      <div class="pane pane--paper">
+        <p class="max-w-[52ch] leading-relaxed">Un pedido de "generar una factura" entra por el índice, que enruta a <span class="font-mono">sunat-comprobantes</span> — esta a su vez usa <span class="font-mono">sunat-catalogos</span> y <span class="font-mono">sunat-calculo</span> como sub-pasos, y <span class="font-mono">sunat-cli</span> si el motor elegido es el paquete nativo.</p>
+        <p class="max-w-[52ch] leading-relaxed mt-4">Una pregunta aislada ("¿qué código es este?") va directo a la sub-skill correspondiente, sin pasar por todo el flujo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="paquetes-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Paquetes (monorepo Bun)</span>
+      <h2 id="paquetes-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">Cinco paquetes, cada uno con su propia frontera.</h2>
+    </div>
+    <div class="pane pane--paper">
+      <table class="w-full border-collapse font-mono text-[0.85rem]">
+        <thead>
+          <tr>
+            <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Paquete</th>
+            <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Responsabilidad</th>
+            <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="py-2 px-1.5 border-b border-aged-rule">sunat-fe-core</td><td class="py-2 px-1.5 border-b border-aged-rule">tipos, catálogos, cálculo de montos/IGV</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">✅ probado</td></tr>
+          <tr><td class="py-2 px-1.5 border-b border-aged-rule">sunat-fe-xml</td><td class="py-2 px-1.5 border-b border-aged-rule">genera UBL 2.1 (Factura/Boleta)</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">✅ probado</td></tr>
+          <tr><td class="py-2 px-1.5 border-b border-aged-rule">sunat-fe-signer</td><td class="py-2 px-1.5 border-b border-aged-rule">firma XML-DSig (xml-crypto)</td><td class="py-2 px-1.5 border-b border-aged-rule text-stamp-red">⚠️ SUNAT la rechaza</td></tr>
+          <tr><td class="py-2 px-1.5 border-b border-aged-rule">sunat-fe-client</td><td class="py-2 px-1.5 border-b border-aged-rule">zip + SOAP + CDR</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">✅ verificado end-to-end</td></tr>
+          <tr><td class="py-2 px-1.5">sunat-fe (CLI)</td><td class="py-2 px-1.5">orquesta los cuatro anteriores</td><td class="py-2 px-1.5 text-aged-rule">📦 sin publicar</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="honestidad-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10 pb-16 md:pb-20">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Lo que se probó de verdad</span>
+      <h2 id="honestidad-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[38ch]">El silencio es honesto; inventar no.</h2>
+      <p class="mt-3.5 max-w-[64ch] text-[1.02rem] leading-relaxed">El cliente SOAP habló con el entorno BETA real de SUNAT: autenticación WS-Security, envío <span class="font-mono">sendBill</span>, y lectura de la respuesta (SOAP Fault o CDR) — todo confirmado con la respuesta real del servidor, no un mock. La firma XML-DSig, en cambio, es criptográficamente correcta consigo misma (se firma y se verifica con éxito en local) pero SUNAT la rechaza con <span class="font-mono">"Incorrect reference digest value"</span>. Se probaron cuatro configuraciones distintas de canonicalización, referencia y certificado contra el servidor real — las cuatro fallaron igual, lo que descarta esas variables como causa aislada. La causa exacta queda pendiente: necesita comparar contra el código PHP real de Greenter o soporte de SUNAT, no más intentos a ciegas.</p>
+      <div class="flex gap-6 mt-8 flex-wrap">
+        <span class="stamp stamp--aceptada">Transporte<br />SOAP<small>verificado real</small></span>
+        <span class="stamp stamp--rechazada">Firma<br />XML-DSig<small>rechazada por SUNAT</small></span>
+      </div>
+    </div>
+  </section>
+
+</Base>

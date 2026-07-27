@@ -1,0 +1,23 @@
+{
+  "skill_name": "sunat-facturacion-electronica",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Genera una boleta de venta en modo PHP (Greenter) para una venta de S/100 + IGV a Maria Ramos (DNI 46712369). No tengo servidor Lycet, quiero el codigo PHP.",
+      "expected_output": "Codigo PHP usando Greenter Model Sale Invoice con tipoDoc=03, cliente con tipoDoc=1 numDoc=46712369, item(s) con tipAfeIgv=10, montos correctos (mtoOperGravadas=100, mtoIGV=18, valorVenta=100, subTotal=118, mtoImpVenta=118), leyenda 1000 en letras, y el flujo de envio mas lectura de CDR.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Tengo un servidor Lycet corriendo en localhost:8000 con token 123456. Genera y envia una factura a EMPRESA X (RUC 20000000001) por 2 tijeras a S/50 c/u, gravadas con IGV.",
+      "expected_output": "Un curl (o llamada HTTP equivalente) a POST http://localhost:8000/api/v1/invoice/send?token=123456 con un JSON valido segun el esquema Invoice de Lycet: tipoDoc=01, client con RUC, details con cantidad=2, mtoValorUnitario=50, montos de IGV correctos.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Necesito anular la factura F001-1 por error en el RUC del cliente. Genera la nota de credito correspondiente.",
+      "expected_output": "Una Nota de Credito (tipoDoc=07) referenciando tipDocAfectado=01 y numDocfectado=F001-1, con codMotivo=02 (Anulacion por error en el RUC) segun el catalogo 09, y pregunta o usa datos razonables para los montos/cliente si no fueron dados.",
+      "files": []
+    }
+  ]
+}

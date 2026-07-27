@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="sunat-facturacion-electronica: Skill de Claude Code"
+  description="Genera y envía comprobantes electrónicos peruanos (Factura, Boleta, Notas, Guía de Remisión) a SUNAT usando Greenter, Lycet, o un paquete TypeScript nativo."
+  activo="inicio"
+>
+
+    <!-- HERO: the mechanism, immediately -->
+    <section class="pane-row" aria-label="Presentación">
+      <div class="pane pane--console min-h-[min(72vh,640px)] flex flex-col justify-center">
+        <div class="mb-6">
+          <img src="/logo.svg" alt="Facturación Electrónica SUNAT Logo" class="h-12 sm:h-16 w-auto max-w-full" />
+        </div>
+        <span class="block font-mono text-[0.72rem] uppercase tracking-wider text-aged-rule mb-3.5">tu agente · claude code</span>
+        <h1 class="font-serif text-[clamp(1.9rem,4vw,2.9rem)] leading-[1.08] mb-4">Le pides un comprobante.<br />SUNAT te responde de verdad.</h1>
+        <p class="font-serif text-[1.05rem] leading-relaxed max-w-[46ch] text-aged-rule">Un skill que traduce lo que le pides a tu agente en un comprobante electrónico peruano válido, con los catálogos, el IGV y el CDR correctos: no una aproximación.</p>
+        <div class="relative bg-[#0f0d09] border border-terminal-rule p-5 mt-8">
+          <button class="copy-btn absolute top-2.5 right-2.5 font-mono text-[0.68rem] uppercase tracking-wide bg-transparent text-aged-rule border border-terminal-rule px-2.5 py-1.5 cursor-pointer hover:text-console-cream hover:border-console-cream" data-copy-target="hero-code">Copiar</button>
+          <div class="font-mono text-[0.92rem] leading-loose whitespace-pre-wrap" id="hero-code"><span class="text-stamp-red">$</span> sunat: emitir factura
+<span class="text-aged-rule">›</span> cliente: Distribuidora Andina S.A.C. (RUC <span class="text-console-cream font-semibold">20123456789</span>)
+<span class="text-aged-rule">›</span> item: 1 x "Servicio de consultoría" — S/ <span class="text-console-cream font-semibold">100.00</span> (gravado)
+<span class="text-aged-rule">›</span> serie/correlativo: <span class="text-console-cream font-semibold">F001-1</span>
+<span class="text-aged-rule">›</span> enviando a SUNAT (<span class="text-console-cream font-semibold">FE_BETA</span>)…</div>
+        </div>
+        <p class="font-mono text-[0.7rem] text-[#6b6455] mt-4">Ejemplo ilustrativo, no es un envío real.</p>
+      </div>
+      <div class="pane pane--paper min-h-[min(72vh,640px)] flex flex-col justify-center">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Factura electrónica</span>
+        <div class="flex justify-between items-baseline border-b-2 border-ledger-ink pb-2.5 mb-1.5">
+          <h2 class="font-serif text-[1.3rem]">Distribuidora Andina S.A.C.</h2>
+          <span class="font-mono text-[0.85rem] text-aged-rule">F001-1</span>
+        </div>
+        <table class="w-full border-collapse font-mono text-[0.88rem] mt-5" aria-label="Detalle del comprobante">
+          <thead><tr><th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Ítem</th><th class="text-right py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink tabular-nums">Valor venta</th></tr></thead>
+          <tbody>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule">Servicio de consultoría</td><td class="text-right py-2 px-1.5 border-b border-aged-rule tabular-nums">100.00</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule">IGV (18%)</td><td class="text-right py-2 px-1.5 border-b border-aged-rule tabular-nums">18.00</td></tr>
+            <tr><td class="py-2 px-1.5 border-t-2 border-ledger-ink font-bold">Total</td><td class="text-right py-2 px-1.5 border-t-2 border-ledger-ink font-bold tabular-nums">S/ 118.00</td></tr>
+          </tbody>
+        </table>
+        <div class="reveal stamp-reveal mt-8">
+          <span class="stamp stamp--aceptada">Aceptada<small>CDR 0 · SUNAT</small></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPACIDADES -->
+    <section aria-labelledby="capacidades-h">
+      <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10 sm:pt-14 md:pt-20">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Qué hace</span>
+        <h2 id="capacidades-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">Ocho tipos de comprobante, un mismo flujo hasta el CDR.</h2>
+        <p class="mt-3.5 max-w-[58ch] text-[1.02rem] leading-relaxed">No solo arma el XML: firma, envía y lee la respuesta de SUNAT antes de decirte que algo fue aceptado. Algunos comprobantes devuelven el CDR al instante; otros dan un ticket y hay que sondear el estado por separado.</p>
+      </div>
+      <div class="pane-row">
+        <div class="pane pane--console">
+          <span class="block font-mono text-[0.72rem] uppercase tracking-wider text-aged-rule mb-3.5">catálogo de comprobantes</span>
+          <ul class="list-none m-0 p-0 font-mono text-[0.88rem]">
+            <li class="py-2 border-b border-dashed border-terminal-rule flex justify-between gap-4"><span><span class="text-stamp-red">01</span> Factura</span></li>
+            <li class="py-2 border-b border-dashed border-terminal-rule flex justify-between gap-4"><span><span class="text-stamp-red">03</span> Boleta de Venta</span></li>
+            <li class="py-2 border-b border-dashed border-terminal-rule flex justify-between gap-4"><span><span class="text-stamp-red">07</span> Nota de Crédito</span></li>
+            <li class="py-2 border-b border-dashed border-terminal-rule flex justify-between gap-4"><span><span class="text-stamp-red">08</span> Nota de Débito</span></li>
+            <li class="py-2 border-b border-dashed border-terminal-rule flex justify-between gap-4"><span><span class="text-stamp-red">—</span> Resumen Diario de Boletas</span><span class="text-aged-rule text-[0.7rem] uppercase">async · ticket</span></li>
+            <li class="py-2 border-b border-dashed border-terminal-rule flex justify-between gap-4"><span><span class="text-stamp-red">—</span> Comunicación de Baja</span><span class="text-aged-rule text-[0.7rem] uppercase">async · ticket</span></li>
+            <li class="py-2 border-b border-dashed border-terminal-rule flex justify-between gap-4"><span><span class="text-stamp-red">—</span> Comunicación de Reversión</span><span class="text-aged-rule text-[0.7rem] uppercase">async · ticket</span></li>
+            <li class="py-2 border-b border-dashed border-terminal-rule flex justify-between gap-4"><span><span class="text-stamp-red">09</span> Guía de Remisión Remitente</span><span class="text-aged-rule text-[0.7rem] uppercase">async · SEE-API</span></li>
+            <li class="py-2 border-b border-dashed border-terminal-rule flex justify-between gap-4"><span><span class="text-stamp-red">20</span> Comprobante de Retención</span></li>
+            <li class="py-2 flex justify-between gap-4"><span><span class="text-stamp-red">40</span> Comprobante de Percepción</span></li>
+          </ul>
+        </div>
+        <div class="pane pane--paper">
+          <p class="max-w-[52ch] leading-relaxed">Desde 2023, la <strong>Guía de Remisión</strong> ya no usa el webservice SOAP: SUNAT migró a la <strong>SEE-API</strong>, autenticada con OAuth2 (<span class="font-mono">client_id</span> / <span class="font-mono">client_secret</span>) contra un servidor REST separado. El resto de comprobantes sigue el flujo SOAP clásico.</p>
+          <p class="max-w-[52ch] leading-relaxed mt-4">Los async no terminan en <span class="font-mono">send()</span>: ese paso solo entrega un <em>ticket</em>. Reportar éxito requiere una segunda consulta de estado.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODOS -->
+    <section aria-labelledby="modos-h">
+      <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10 sm:pt-14 md:pt-20">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Cómo lo hablas</span>
+        <h2 id="modos-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">Tres motores: PHP, API REST, o TypeScript nativo.</h2>
+        <p class="mt-3.5 max-w-[58ch] text-[1.02rem] leading-relaxed">Se detecta o se elige, no se asume. Los tres comparten los mismos nombres de campo — ver <a class="text-stamp-red underline" href="/cli/">la referencia del CLI</a> para el motor nativo.</p>
+      </div>
+      <div class="pane-row">
+        <div class="pane pane--console">
+          <span class="block font-mono text-[0.72rem] uppercase tracking-wider text-aged-rule mb-3.5">detección de entorno</span>
+          <div class="font-mono text-[0.92rem] leading-loose whitespace-pre-wrap"><span class="text-aged-rule">›</span> ¿composer.json trae greenter/lite? → <span class="text-console-cream font-semibold">modo PHP</span>
+<span class="text-aged-rule">›</span> ¿hay LYCET_API_URL configurado? → <span class="text-console-cream font-semibold">modo API REST</span> (Lycet)
+<span class="text-aged-rule">›</span> ¿quieres TypeScript/Bun, sin PHP? → <span class="text-console-cream font-semibold">sunat-fe</span> (CLI nativo)</div>
+        </div>
+        <div class="pane pane--paper">
+          <table class="w-full border-collapse font-mono text-[0.88rem]" aria-label="Campos equivalentes entre modos">
+            <thead><tr><th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Campo</th><th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">PHP (Greenter)</th><th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">TS (sunat-fe)</th></tr></thead>
+            <tbody>
+              <tr><td class="font-mono py-2 px-1.5 border-b border-aged-rule">mtoValorVenta</td><td class="font-mono py-2 px-1.5 border-b border-aged-rule">$item-&gt;setMtoValorVenta()</td><td class="font-mono py-2 px-1.5 border-b border-aged-rule">item.mtoValorVenta</td></tr>
+              <tr><td class="font-mono py-2 px-1.5 border-b border-aged-rule">tipAfeIgv</td><td class="font-mono py-2 px-1.5 border-b border-aged-rule">$item-&gt;setTipAfeIgv()</td><td class="font-mono py-2 px-1.5 border-b border-aged-rule">item.tipAfeIgv</td></tr>
+            </tbody>
+          </table>
+          <p class="mt-4.5 text-[0.95rem] text-aged-rule">Mismo modelo de datos, tres superficies de envío.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEGURIDAD BETA / PRODUCCION -->
+    <section aria-labelledby="seguridad-h">
+      <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10 sm:pt-14 md:pt-20">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">La frontera que sí importa</span>
+        <h2 id="seguridad-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">BETA es un ensayo. PRODUCCIÓN es legal y no tiene "deshacer".</h2>
+        <p class="mt-3.5 max-w-[58ch] text-[1.02rem] leading-relaxed">Enviar a producción consume la numeración correlativa real del contribuyente y genera un comprobante con validez legal. Si la configuración apunta a producción, el skill te lo confirma antes de enviar.</p>
+      </div>
+      <div class="pane-row">
+        <div class="pane pane--console flex flex-col gap-6">
+          <div>
+            <span class="block font-mono text-[0.72rem] uppercase tracking-wider text-aged-rule mb-3.5">FE_BETA</span>
+            <p class="max-w-[44ch] leading-relaxed">Entorno de pruebas. Se puede reintentar, corregir, repetir. No requiere confirmación extra.</p>
+          </div>
+          <div class="reveal stamp-reveal">
+            <span class="stamp stamp--aceptada">Entorno de<br />pruebas<small>reversible</small></span>
+          </div>
+        </div>
+        <div class="pane pane--paper flex flex-col gap-6">
+          <div>
+            <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">FE_PRODUCCIÓN</span>
+            <p class="max-w-[44ch] leading-relaxed">Validez legal real. Solo se revierte con una Nota de Crédito o una Comunicación de Baja formal, nunca con un "deshacer". El skill confirma contigo antes de enviar aquí.</p>
+          </div>
+          <div class="reveal stamp-reveal">
+            <span class="stamp stamp--rechazada">Válidez legal<br />real<small>no reversible</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENLACES DE SALIDA -->
+    <section aria-labelledby="explora-h">
+      <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10 sm:pt-14 pb-16 md:pb-20">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Seguir explorando</span>
+        <h2 id="explora-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[36ch] mb-8">El CLI, los catálogos completos, y cómo está armado por dentro.</h2>
+        <div class="flex gap-4 flex-wrap">
+          <a href="/cli/" class="inline-block font-mono text-[0.85rem] uppercase tracking-wide no-underline px-6 py-3.5 border-2 border-stamp-red text-stamp-red hover:bg-stamp-red hover:text-paper">CLI y paquete npm →</a>
+          <a href="/catalogos/" class="inline-block font-mono text-[0.85rem] uppercase tracking-wide no-underline px-6 py-3.5 border-2 border-ledger-ink text-ledger-ink hover:bg-ledger-ink hover:text-paper">Explorar catálogos →</a>
+          <a href="/arquitectura/" class="inline-block font-mono text-[0.85rem] uppercase tracking-wide no-underline px-6 py-3.5 border-2 border-ledger-ink text-ledger-ink hover:bg-ledger-ink hover:text-paper">Arquitectura →</a>
+        </div>
+      </div>
+    </section>
+
+</Base>

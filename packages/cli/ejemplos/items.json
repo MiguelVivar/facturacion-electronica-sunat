@@ -1,0 +1,9 @@
+[
+  {
+    "cantidad": 1,
+    "descripcion": "Servicio de consultoría",
+    "unidad": "ZZ",
+    "mtoValorUnitario": 100,
+    "tipAfeIgv": "10"
+  }
+]

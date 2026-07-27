@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg-console { fill: #15130f; }
+      .bg-paper { fill: #f6f1e7; }
+      .text-cream { fill: #e8e2d0; font-family: 'IBM Plex Mono', monospace; }
+    </style>
+  </defs>
+
+  <!-- Left Console Half -->
+  <rect x="0" y="0" width="50" height="100" class="bg-console" rx="4" />
+  <circle cx="10" cy="12" r="2.5" fill="#3a362c" />
+  <circle cx="18" cy="12" r="2.5" fill="#3a362c" />
+  <circle cx="26" cy="12" r="2.5" fill="#3a362c" />
+  <text x="8" y="36" font-size="14" font-weight="700" class="text-cream">$</text>
+  <text x="20" y="36" font-size="10" class="text-cream" fill-opacity="0.8">xml</text>
+  <rect x="8" y="46" width="28" height="3.5" fill="#9c2b1f" />
+  <rect x="8" y="55" width="20" height="2.5" fill="#8a8272" opacity="0.6" />
+  <rect x="8" y="63" width="30" height="2.5" fill="#8a8272" opacity="0.6" />
+  <rect x="8" y="78" width="7" height="11" fill="#e8e2d0" />
+
+  <!-- Perforation Seam -->
+  <line x1="50" y1="0" x2="50" y2="100" stroke="#8a8272" stroke-width="2" stroke-dasharray="3,3" />
+
+  <!-- Right Paper Half -->
+  <rect x="50" y="0" width="50" height="100" class="bg-paper" rx="4" />
+  <rect x="58" y="14" width="34" height="4.5" fill="#211d16" />
+  <line x1="58" y1="28" x2="92" y2="28" stroke="#8a8272" stroke-width="1.2" />
+  <line x1="58" y1="38" x2="92" y2="38" stroke="#8a8272" stroke-width="1.2" stroke-dasharray="1,1" />
+  <line x1="58" y1="48" x2="92" y2="48" stroke="#8a8272" stroke-width="1.2" stroke-dasharray="1,1" />
+  <line x1="58" y1="58" x2="92" y2="58" stroke="#211d16" stroke-width="2" />
+
+  <!-- Stamp -->
+  <g transform="translate(75, 75) rotate(-11)">
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#9c2b1f" stroke-width="2" stroke-dasharray="10,2,3,2" />
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#9c2b1f" stroke-width="1" />
+    <text x="0" y="-4" font-family="'IBM Plex Mono', monospace" font-size="6.5" font-weight="700" fill="#9c2b1f" text-anchor="middle" letter-spacing="0.5">SUNAT</text>
+    <text x="0" y="3.5" font-family="'IBM Plex Mono', monospace" font-size="5" font-weight="700" fill="#9c2b1f" text-anchor="middle">ACEPTADA</text>
+  </g>
+</svg>

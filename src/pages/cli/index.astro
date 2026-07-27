@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="CLI y paquete npm — sunat-fe"
+  description="Referencia de comandos del CLI sunat-fe: catálogo, cálculo, generación de XML, firma y envío a SUNAT."
+  activo="cli"
+>
+
+  <section aria-labelledby="cli-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-12 sm:pt-16 md:pt-20">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">CLI · paquete npm</span>
+      <h1 id="cli-h" class="font-serif text-[clamp(1.9rem,4vw,2.9rem)] leading-[1.08] max-w-[20ch]">sunat-fe: cinco comandos, un pipeline.</h1>
+      <p class="mt-4 max-w-[60ch] text-[1.02rem] leading-relaxed">Un monorepo TypeScript nativo (Bun) que no depende de PHP: <span class="font-mono">catalogo</span>, <span class="font-mono">calcular</span>, <span class="font-mono">generar-xml</span>, <span class="font-mono">firmar</span> y <span class="font-mono">enviar</span> se encadenan en un solo pipeline real.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="instalacion-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Instalación</span>
+      <h2 id="instalacion-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">El mecanismo de distribución final aún no está definido.</h2>
+      <p class="mt-3.5 max-w-[58ch] text-[1.02rem] leading-relaxed">Hoy vive como monorepo Bun. Dentro del proyecto:</p>
+    </div>
+    <div class="pane-row">
+      <div class="pane pane--console">
+        <div class="relative bg-[#0f0d09] border border-terminal-rule p-5">
+          <button class="copy-btn absolute top-2.5 right-2.5 font-mono text-[0.68rem] uppercase tracking-wide bg-transparent text-aged-rule border border-terminal-rule px-2.5 py-1.5 cursor-pointer hover:text-console-cream hover:border-console-cream" data-copy-target="install-code">Copiar</button>
+          <div class="font-mono text-[0.92rem] leading-loose whitespace-pre-wrap" id="install-code"><span class="text-stamp-red">$</span> bun install
+<span class="text-stamp-red">$</span> bun run --cwd packages/cli build
+<span class="text-stamp-red">$</span> node packages/cli/dist/cli.js --help</div>
+        </div>
+        <p class="font-mono text-[0.7rem] text-[#6b6455] mt-4">Placeholder: aún no publicado en el registro público de npm.</p>
+      </div>
+      <div class="pane pane--paper">
+        <div class="flex gap-3 flex-wrap">
+          <span class="border border-aged-rule px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-wide">sunat-fe-core</span>
+          <span class="border border-aged-rule px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-wide">sunat-fe-xml</span>
+          <span class="border border-aged-rule px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-wide">sunat-fe-signer</span>
+          <span class="border border-aged-rule px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-wide">sunat-fe-client</span>
+          <span class="border border-stamp-red px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-wide text-stamp-red">sunat-fe (CLI)</span>
+        </div>
+        <p class="mt-5 max-w-[48ch] leading-relaxed">Cinco paquetes de workspace. El CLI orquesta los otros cuatro; también se pueden usar programáticamente por separado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="comandos-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Comandos</span>
+      <h2 id="comandos-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">El mismo pipeline que usa el skill, en tu terminal.</h2>
+    </div>
+    <div class="pane-row">
+      <div class="pane pane--console">
+        <div class="relative bg-[#0f0d09] border border-terminal-rule p-5">
+          <button class="copy-btn absolute top-2.5 right-2.5 font-mono text-[0.68rem] uppercase tracking-wide bg-transparent text-aged-rule border border-terminal-rule px-2.5 py-1.5 cursor-pointer hover:text-console-cream hover:border-console-cream" data-copy-target="comandos-code">Copiar</button>
+          <div class="font-mono text-[0.85rem] leading-loose whitespace-pre-wrap" id="comandos-code"><span class="text-stamp-red">$</span> sunat-fe catalogo factura
+<span class="text-stamp-red">$</span> sunat-fe calcular items.json
+<span class="text-stamp-red">$</span> sunat-fe generar-xml datos.json &gt; factura.xml
+<span class="text-stamp-red">$</span> sunat-fe firmar factura.xml clave.pem cert.pem &gt; firmada.xml
+<span class="text-stamp-red">$</span> sunat-fe enviar firmada.xml config.json</div>
+        </div>
+      </div>
+      <div class="pane pane--paper">
+        <table class="w-full border-collapse font-mono text-[0.82rem]" aria-label="Comandos del CLI">
+          <thead><tr><th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Comando</th><th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Qué hace</th></tr></thead>
+          <tbody>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule">catalogo</td><td class="py-2 px-1.5 border-b border-aged-rule">Busca un código/nombre en los 9 catálogos SUNAT</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule">calcular</td><td class="py-2 px-1.5 border-b border-aged-rule">Monto/IGV de cabecera desde un JSON de ítems</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule">generar-xml</td><td class="py-2 px-1.5 border-b border-aged-rule">XML UBL 2.1 de Factura/Boleta (sin firmar)</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule">firmar</td><td class="py-2 px-1.5 border-b border-aged-rule">Firma XML-DSig (RSA-SHA1 + exc-c14n)</td></tr>
+            <tr><td class="py-2 px-1.5">enviar</td><td class="py-2 px-1.5">SOAP <span class="font-mono">sendBill</span> a SUNAT, lee CDR/Fault</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="estado-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10 pb-16 md:pb-20">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Estado real — no sobre-prometer</span>
+      <h2 id="estado-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[38ch]">Verificado contra el SUNAT real, no contra un mock.</h2>
+      <p class="mt-3.5 max-w-[62ch] text-[1.02rem] leading-relaxed">Los cinco comandos funcionan mecánicamente end-to-end — <span class="font-mono">enviar</span> de verdad llega al entorno BETA de SUNAT, autentica, envía y lee la respuesta real. Lo único que falta: SUNAT todavía rechaza la firma específica que produce <span class="font-mono">firmar</span> con <span class="font-mono">"Incorrect reference digest value"</span>. Se probaron cuatro configuraciones de firma distintas contra el servidor real; las cuatro fallaron igual — la causa exacta sigue sin resolverse. Ver <a class="text-stamp-red underline" href="/arquitectura/">la arquitectura</a> para el detalle completo por capa.</p>
+      <div class="reveal stamp-reveal mt-8 inline-block">
+        <span class="stamp stamp--rechazada">Firma<br />sin validar<small>CDR pendiente</small></span>
+      </div>
+    </div>
+  </section>
+
+</Base>

@@ -1,0 +1,26 @@
+{
+  "tipoDoc": "01",
+  "serie": "F001",
+  "correlativo": "1",
+  "fechaEmision": "2026-07-27",
+  "moneda": "PEN",
+  "emisor": {
+    "ruc": "20123456789",
+    "razonSocial": "Distribuidora Andina S.A.C.",
+    "direccion": "Av. Ejemplo 123, Lima"
+  },
+  "cliente": {
+    "tipoDocumento": "6",
+    "numeroDocumento": "20999999999",
+    "razonSocialONombre": "Cliente de Prueba S.A.C."
+  },
+  "items": [
+    {
+      "cantidad": 1,
+      "descripcion": "Servicio de consultoría",
+      "unidad": "ZZ",
+      "mtoValorUnitario": 100,
+      "tipAfeIgv": "10"
+    }
+  ]
+}

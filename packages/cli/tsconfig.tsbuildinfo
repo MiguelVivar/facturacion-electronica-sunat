@@ -1,0 +1,1 @@
+{"root":["./src/cli.ts","./src/index.ts","./src/comandos/calcular.ts","./src/comandos/catalogo.ts","./src/comandos/enviar.ts","./src/comandos/firmar.ts","./src/comandos/generarxml.ts"],"version":"5.9.3"}

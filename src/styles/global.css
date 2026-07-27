@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terminal-black: #15130f;
+  --color-console-cream: #e8e2d0;
+  --color-terminal-rule: #3a362c;
+  --color-paper: #f6f1e7;
+  --color-ledger-ink: #211d16;
+  --color-aged-rule: #8a8272;
+  --color-stamp-red: #9c2b1f;
+  --color-ledger-green: #2f5233;
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ledger-ink font-serif antialiased;
+  }
+}
+
+@layer components {
+  /* Dual-pane rhythm: the perforated seam runs horizontal on mobile (stacked
+     panes), vertical on desktop (side-by-side panes) — see DESIGN.md Layout. */
+  .pane-row {
+    @apply grid grid-cols-1 md:grid-cols-2 items-stretch relative;
+  }
+  .pane-row::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: auto; height: 1px;
+    background-image: repeating-linear-gradient(to right, var(--color-aged-rule) 0 6px, transparent 6px 14px);
+  }
+  @media (min-width: 768px) {
+    .pane-row::after {
+      top: 0; bottom: 0; left: 50%; right: auto; width: 1px; height: auto;
+      background-image: repeating-linear-gradient(to bottom, var(--color-aged-rule) 0 6px, transparent 6px 14px);
+    }
+  }
+
+  /* The verdict stamp: the one circular form in an otherwise rectangular
+     world (DESIGN.md Shapes), inked via mix-blend-mode rather than opacity. */
+  .stamp {
+    @apply inline-flex flex-col items-center justify-center font-mono font-bold uppercase tracking-wide text-center border-[3px] px-6 py-3;
+    border-radius: 50% / 42%;
+    transform: rotate(-7deg);
+    mix-blend-mode: multiply;
+    line-height: 1.15;
+  }
+  .stamp--aceptada { @apply text-ledger-green border-ledger-green; background-color: color-mix(in srgb, var(--color-ledger-green) 8%, transparent); }
+  .stamp--rechazada { @apply text-stamp-red border-stamp-red; background-color: color-mix(in srgb, var(--color-stamp-red) 8%, transparent); }
+  .stamp small { @apply text-[0.62em] font-medium tracking-wider opacity-85 normal-case; }
+
+  .reveal { @apply opacity-0 translate-y-3 transition-all duration-500 ease-out; }
+  .reveal.is-visible { @apply opacity-100 translate-y-0; }
+
+  .stamp-reveal {
+    opacity: 0;
+    transform: translateY(10px) rotate(-7deg) scale(0.9);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .stamp-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(-7deg) scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .stamp-reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+  }
+
+  /* The two grounds themselves (DESIGN.md Colors) — reused across every
+     section's dual-pane split, so they earn a name rather than repetition. */
+  .pane { @apply p-8 sm:p-10 md:p-16 lg:p-20; }
+  .pane--console { @apply bg-terminal-black text-console-cream; }
+  .pane--paper { @apply bg-paper text-ledger-ink; }
+
+  /* Mobile nav disclosure — a native <details>, not a JS-driven menu. */
+  .titlebar-menu summary { list-style: none; cursor: pointer; }
+  .titlebar-menu summary::-webkit-details-marker { display: none; }
+
+  /* Copy-to-clipboard affordance on console code blocks. */
+  .copy-btn[data-copied="true"]::after { content: " \2713"; }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "sunat-fe-xml",
+  "version": "0.1.0",
+  "description": "Genera XML UBL 2.1 (sin firmar) para comprobantes SUNAT a partir de los tipos de sunat-fe-core.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "sunat-fe-core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/bun": "^1.3.0"
+  },
+  "license": "MIT"
+}
