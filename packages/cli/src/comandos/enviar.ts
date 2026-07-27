@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { enviarComprobante } from 'sunat-fe-client';
+import { enviarComprobante } from '@miguelvivar/sunat-fe-client';
 
 interface ConfigEnvio {
   ruc: string;

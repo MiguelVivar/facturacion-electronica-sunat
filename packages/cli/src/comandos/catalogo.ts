@@ -1,4 +1,4 @@
-import { buscarCatalogo } from 'sunat-fe-core';
+import { buscarCatalogo } from '@miguelvivar/sunat-fe-core';
 
 /** `sunat-fe catalogo <consulta>` — busca un código o nombre en todos los catálogos SUNAT. */
 export function comandoCatalogo(consulta: string | undefined): string {

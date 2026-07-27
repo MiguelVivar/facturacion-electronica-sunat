@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 
-import { generarXmlFacturaBoleta, type DatosFacturaBoleta } from 'sunat-fe-xml';
+import { generarXmlFacturaBoleta, type DatosFacturaBoleta } from '@miguelvivar/sunat-fe-xml';
 
 /**
  * `sunat-fe generar-xml <datos.json>` — genera el XML UBL 2.1 (SIN FIRMAR) de una Factura/Boleta

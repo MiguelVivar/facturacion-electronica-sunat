@@ -5,8 +5,8 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { generarXmlFacturaBoleta } from 'sunat-fe-xml';
-import { firmarXml } from 'sunat-fe-signer';
+import { generarXmlFacturaBoleta } from '@miguelvivar/sunat-fe-xml';
+import { firmarXml } from '@miguelvivar/sunat-fe-signer';
 import { enviarComprobante } from './cliente.js';
 
 const CERT_DIR = join(import.meta.dir, '..', '..', 'signer', 'pruebas');

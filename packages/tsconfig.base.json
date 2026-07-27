@@ -4,6 +4,13 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "lib": ["ES2022"],
+    "baseUrl": ".",
+    "paths": {
+      "@miguelvivar/sunat-fe-core": ["../core/src/index.ts"],
+      "@miguelvivar/sunat-fe-xml": ["../xml/src/index.ts"],
+      "@miguelvivar/sunat-fe-signer": ["../signer/src/index.ts"],
+      "@miguelvivar/sunat-fe-client": ["../client/src/index.ts"]
+    },
     "strict": true,
     "declaration": true,
     "outDir": "dist",

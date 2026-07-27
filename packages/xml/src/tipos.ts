@@ -1,4 +1,4 @@
-import type { Item } from 'sunat-fe-core';
+import type { Item } from '@miguelvivar/sunat-fe-core';
 
 export interface Empresa {
   ruc: string;

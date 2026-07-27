@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 
-import { calcularCabecera, type Item } from 'sunat-fe-core';
+import { calcularCabecera, type Item } from '@miguelvivar/sunat-fe-core';
 
 function esItemValido(valor: unknown): valor is Item {
   if (typeof valor !== 'object' || valor === null) return false;

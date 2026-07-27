@@ -1,4 +1,4 @@
-import { calcularCabecera } from 'sunat-fe-core';
+import { calcularCabecera } from '@miguelvivar/sunat-fe-core';
 import type { DatosFacturaBoleta } from './tipos.js';
 import { escaparXml, formatearFecha, formatearMonto } from './util.js';
 import { montoALetras } from './numeroALetras.js';

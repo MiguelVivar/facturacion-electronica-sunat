@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { firmarXml } from 'sunat-fe-signer';
+import { firmarXml } from '@miguelvivar/sunat-fe-signer';
 
 /**
  * `sunat-fe firmar <xml.xml> <clave-privada.pem> <certificado.pem>` — firma XML-DSig.
