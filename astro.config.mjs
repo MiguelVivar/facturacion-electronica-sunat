@@ -1,11 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
+import path from 'path';
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        'sunat-fe-core': path.resolve('./packages/core/src/index.ts')
+      }
+    }
   }
 });
