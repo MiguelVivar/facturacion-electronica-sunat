@@ -1,0 +1,25 @@
+{
+  "tipoDoc": "01",
+  "serie": "F001",
+  "correlativo": 1,
+  "fechaEmision": "2026-07-27",
+  "moneda": "PEN",
+  "emisor": {
+    "ruc": "20000000001",
+    "rznSocial": "Empresa Emisora S.A.C."
+  },
+  "cliente": {
+    "tipoDoc": "6",
+    "numDoc": "20123456789",
+    "rznSocial": "Distribuidora Andina S.A.C."
+  },
+  "items": [
+    {
+      "descripcion": "Servicio de consultoría en software",
+      "cantidad": 1,
+      "unidad": "NIU",
+      "mtoValorUnitario": 100,
+      "tipAfeIgv": "10"
+    }
+  ]
+}
