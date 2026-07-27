@@ -13,6 +13,8 @@ const enlaces = [
   { href: '/catalogos/', clave: 'catalogos', etiqueta: 'Catálogos' },
   { href: '/arquitectura/', clave: 'arquitectura', etiqueta: 'Arquitectura' },
 ] as const;
+const canonicalUrl = new URL(Astro.url.pathname, 'https://fe.visox.tech').toString();
+const ogImageUrl = 'https://fe.visox.tech/logo.svg';
 ---
 <html lang="es">
 <head>
@@ -21,10 +23,49 @@ const enlaces = [
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="keywords" content="sunat, facturacion electronica, peru, ubl 2.1, igv, cdr, comprobantes electronicos, claude code skill, typescript, cli, greenter, lycet" />
+  <meta name="author" content="Miguel Vivar" />
+  <link rel="canonical" href={canonicalUrl} />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Facturación Electrónica SUNAT" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:locale" content="es_PE" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonicalUrl} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json" is:raw>
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "sunat-facturacion-electronica",
+    "operatingSystem": "Cross-platform",
+    "applicationCategory": "BusinessApplication",
+    "description": "Skill de Claude Code y motor TypeScript nativo para la emisión y gestión de comprobantes electrónicos SUNAT en Perú.",
+    "url": "https://fe.visox.tech/",
+    "author": {
+      "@type": "Person",
+      "name": "Miguel Vivar",
+      "url": "https://github.com/MiguelVivar"
+    }
+  }
+  </script>
+
   <style is:global>
     @import '../styles/global.css';
   </style>
