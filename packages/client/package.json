@@ -32,7 +32,6 @@
   "devDependencies": {
     "typescript": "^5.7.0",
     "@types/bun": "^1.3.0",
-    "@miguelvivar/sunat-fe-core": "workspace:*",
     "@miguelvivar/sunat-fe-xml": "workspace:*",
     "@miguelvivar/sunat-fe-signer": "workspace:*"
   },

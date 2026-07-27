@@ -1,0 +1,65 @@
+name: '🐛 Reporte de Error (Bug Report)'
+description: Crea un informe de error para ayudarnos a reproducir y solucionar un fallo tributario o de código.
+title: '🐛 [BUG]: '
+labels: ['bug', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¡Gracias por tomarte el tiempo de reportar este problema! Por favor proporciona la información más detallada posible.
+
+  - type: input
+    id: version
+    attributes:
+      label: 📌 Versión del Paquete / Skill / CLI
+      description: ¿Qué versión o commit estás utilizando? (ej. v0.1.0, @miguelvivar/sunat-fe-core@0.1.0)
+      placeholder: 'v0.1.0'
+    validations:
+      required: true
+
+  - type: select
+    id: environment
+    attributes:
+      label: ⚙️ Entorno SUNAT
+      description: Selecciona el entorno donde ocurrió el inconveniente.
+      options:
+        - 'FE_BETA (Pruebas SUNAT)'
+        - 'FE_PRODUCCIÓN (Producción Real)'
+        - 'Local (Sin envío a SUNAT)'
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 Descripción del Bug
+      description: Una descripción clara y concisa de lo que ocurre.
+      placeholder: 'Al intentar firmar/enviar una Factura con la afectación 10...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 🔄 Pasos para Reproducir
+      description: Código, JSON de entrada o comandos de CLI necesarios para reproducir el fallo.
+      placeholder: |
+        1. Ejecutar 'sunat-fe calcular datos.json'
+        2. Ver el resultado en la consola...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 🎯 Comportamiento Esperado
+      description: Qué debería haber ocurrido.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 📋 Logs o SOAP Fault de SUNAT (si aplica)
+      description: Copia la respuesta XML de SUNAT o los logs de la terminal aquí.
+      render: shell

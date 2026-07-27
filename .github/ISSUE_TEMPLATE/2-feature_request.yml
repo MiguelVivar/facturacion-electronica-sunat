@@ -1,0 +1,37 @@
+name: '✨ Solicitud de Funcionalidad (Feature Request)'
+description: Propón una nueva característica, nuevo catálogo o mejora para la Skill/CLI/Librerías.
+title: '✨ [FEAT]: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¿Tienes una idea para mejorar este ecosistema de facturación electrónica? Nos encantaría escucharla.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 🚀 ¿Tu sugerencia está relacionada con un problema existente?
+      description: Una descripción clara de cuál es el problema o la necesidad (ej. "No puedo emitir Guías de Remisión de Transportista...").
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 💡 Descripción de la Solución Propuesta
+      description: Explica cómo te gustaría que funcionara la nueva característica.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🔀 Alternativas Consideradas
+      description: Describe cualquier solución alternativa que hayas considerado.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 📌 Contexto Tributario Adicional
+      description: Adjunta referencias a la normativa SUNAT o resolución de superintendencia si aplica.
