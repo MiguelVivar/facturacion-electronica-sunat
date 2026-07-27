@@ -83,4 +83,19 @@
 
   /* Copy-to-clipboard affordance on console code blocks. */
   .copy-btn[data-copied="true"]::after { content: " \2713"; }
+  .copy-btn[data-copied="true"] { @apply text-ledger-green border-ledger-green; }
+
+  /* Terminal window container for code blocks. */
+  .terminal-window {
+    @apply border border-terminal-rule bg-[#0b0907] my-5 overflow-hidden text-left;
+  }
+  .terminal-window-header {
+    @apply flex items-center justify-between bg-[#1a1712] px-4 py-2 border-b border-terminal-rule font-mono text-[0.7rem] uppercase tracking-wider text-aged-rule select-none;
+  }
+  .terminal-window-body {
+    @apply p-4 sm:p-5 font-mono text-[0.85rem] leading-relaxed text-console-cream overflow-x-auto;
+  }
+  .terminal-window-body pre {
+    @apply m-0 font-mono text-[0.85rem] leading-relaxed overflow-x-auto whitespace-pre font-normal text-console-cream;
+  }
 }
