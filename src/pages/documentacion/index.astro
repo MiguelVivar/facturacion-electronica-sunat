@@ -1,0 +1,340 @@
+---
+import Base from '../../layouts/Base.astro';
+import { TIPOS_DOCUMENTO, TIPOS_AFECTACION_IGV, MONEDAS, UNIDADES_MEDIDA } from 'sunat-fe-core';
+---
+<Base
+  title="Documentación Completa — Facturación Electrónica SUNAT"
+  description="Guía completa del ecosistema sunat-facturacion-electronica: instalación, CLI, API TypeScript, Greenter PHP, Lycet REST, cálculo de IGV y códigos CDR."
+  activo="documentacion"
+>
+
+  <!-- CABECERA -->
+  <section aria-labelledby="doc-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-12 sm:pt-16 md:pt-20 pb-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Documentación Oficial</span>
+      <h1 id="doc-h" class="font-serif text-[clamp(2.1rem,4.5vw,3.2rem)] leading-[1.08] max-w-[28ch]">Todo sobre Facturación Electrónica SUNAT.</h1>
+      <p class="mt-4 max-w-[66ch] text-[1.05rem] leading-relaxed">Guía exhaustiva para desarrolladores y agentes de IA: instalación de la skill, comandos del CLI, uso programático en TypeScript, integración con PHP/Lycet, cálculo de IGV y lectura de CDRs.</p>
+
+      <!-- INDICE DE SECCIONES -->
+      <div class="mt-8 pt-6 border-t border-dashed border-aged-rule flex flex-wrap gap-2.5 font-mono text-[0.75rem] uppercase tracking-wider">
+        <a href="#instalacion" class="border border-aged-rule px-3 py-1.5 no-underline text-ledger-ink hover:border-stamp-red hover:text-stamp-red">1. Instalación</a>
+        <a href="#cli" class="border border-aged-rule px-3 py-1.5 no-underline text-ledger-ink hover:border-stamp-red hover:text-stamp-red">2. Manual CLI</a>
+        <a href="#typescript" class="border border-aged-rule px-3 py-1.5 no-underline text-ledger-ink hover:border-stamp-red hover:text-stamp-red">3. API TypeScript</a>
+        <a href="#php-lycet" class="border border-aged-rule px-3 py-1.5 no-underline text-ledger-ink hover:border-stamp-red hover:text-stamp-red">4. PHP & REST</a>
+        <a href="#igv-formula" class="border border-aged-rule px-3 py-1.5 no-underline text-ledger-ink hover:border-stamp-red hover:text-stamp-red">5. Cálculo IGV</a>
+        <a href="#comprobantes" class="border border-aged-rule px-3 py-1.5 no-underline text-ledger-ink hover:border-stamp-red hover:text-stamp-red">6. Comprobantes</a>
+        <a href="#cdr-codigos" class="border border-aged-rule px-3 py-1.5 no-underline text-ledger-ink hover:border-stamp-red hover:text-stamp-red">7. Códigos CDR</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. INSTALACION -->
+  <section id="instalacion" aria-labelledby="inst-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Sección 1</span>
+      <h2 id="inst-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)]">Instalación y Configuración</h2>
+    </div>
+    <div class="pane-row">
+      <div class="pane pane--console">
+        <span class="block font-mono text-[0.72rem] uppercase tracking-wider text-aged-rule mb-3.5">A. Skill de Claude Code</span>
+        <div class="terminal-window">
+          <div class="terminal-window-header">
+            <span>bash — instalación skill</span>
+            <button class="copy-btn bg-transparent text-aged-rule border border-terminal-rule px-2.5 py-1 cursor-pointer hover:text-console-cream" data-copy-target="skill-code">Copiar</button>
+          </div>
+          <div class="terminal-window-body">
+            <pre id="skill-code"><span class="text-aged-rule"># Método 1: Clonar directo al directorio de skills</span>
+<span class="text-stamp-red">$</span> git clone https://github.com/MiguelVivar/facturacion-electronica-sunat.git ~/.claude/skills/sunat-facturacion-electronica
+
+<span class="text-aged-rule"># Método 2: Descargar el ZIP desde Releases</span>
+<span class="text-stamp-red">$</span> curl -LO https://github.com/MiguelVivar/facturacion-electronica-sunat/releases/download/v0.1.0/sunat-facturacion-electronica-skill-v0.1.0.zip
+<span class="text-stamp-red">$</span> unzip sunat-facturacion-electronica-skill-v0.1.0.zip -d ~/.claude/skills/</pre>
+          </div>
+        </div>
+      </div>
+      <div class="pane pane--paper">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3.5">B. CLI Nativo (sunat-fe)</span>
+        <div class="terminal-window border-aged-rule">
+          <div class="terminal-window-header bg-[#2a2620] text-console-cream">
+            <span>bash — CLI global</span>
+            <button class="copy-btn bg-transparent text-console-cream border border-aged-rule px-2.5 py-1 cursor-pointer" data-copy-target="cli-global-code">Copiar</button>
+          </div>
+          <div class="terminal-window-body bg-[#181612]">
+            <pre id="cli-global-code"><span class="text-aged-rule"># Instalar globalmente con npm</span>
+<span class="text-stamp-red">$</span> npm install -g git+https://github.com/MiguelVivar/facturacion-electronica-sunat.git
+
+<span class="text-aged-rule"># O instalar globalmente con Bun</span>
+<span class="text-stamp-red">$</span> bun add -g git+https://github.com/MiguelVivar/facturacion-electronica-sunat.git
+
+<span class="text-aged-rule"># Verificar instalación</span>
+<span class="text-stamp-red">$</span> sunat-fe --help</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. MANUAL CLI -->
+  <section id="cli" aria-labelledby="man-cli-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Sección 2</span>
+      <h2 id="man-cli-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)]">Manual Completo del CLI (`sunat-fe`)</h2>
+    </div>
+    <div class="pane-row">
+      <div class="pane pane--console">
+        <div class="terminal-window">
+          <div class="terminal-window-header">
+            <span>bash — pipeline completo de 5 pasos</span>
+            <button class="copy-btn bg-transparent text-aged-rule border border-terminal-rule px-2.5 py-1 cursor-pointer hover:text-console-cream" data-copy-target="pipe-code">Copiar</button>
+          </div>
+          <div class="terminal-window-body">
+            <pre id="pipe-code"><span class="text-aged-rule"># 1. Buscar en catálogos</span>
+<span class="text-stamp-red">$</span> sunat-fe catalogo "factura"
+
+<span class="text-aged-rule"># 2. Calcular montos e IGV de ítems</span>
+<span class="text-stamp-red">$</span> sunat-fe calcular items.json
+
+<span class="text-aged-rule"># 3. Generar XML UBL 2.1 estructurado</span>
+<span class="text-stamp-red">$</span> sunat-fe generar-xml datos.json &gt; factura.xml
+
+<span class="text-aged-rule"># 4. Aplicar firma digital XML-DSig</span>
+<span class="text-stamp-red">$</span> sunat-fe firmar factura.xml clave.pem cert.pem &gt; firmada.xml
+
+<span class="text-aged-rule"># 5. Empaquetar en ZIP y transmitir a SUNAT</span>
+<span class="text-stamp-red">$</span> sunat-fe enviar firmada.xml config.json</pre>
+          </div>
+        </div>
+      </div>
+      <div class="pane pane--paper">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Archivos JSON de Entrada</span>
+        <p class="text-[0.92rem] leading-relaxed mb-4">Ejemplo de <span class="font-mono">datos.json</span> para generar comprobantes:</p>
+        <div class="terminal-window border-aged-rule">
+          <div class="terminal-window-header bg-[#2a2620] text-console-cream">
+            <span>json — datos.json</span>
+          </div>
+          <div class="terminal-window-body bg-[#181612] text-[0.78rem]">
+            <pre is:raw>{
+  "tipoDoc": "01",
+  "serie": "F001",
+  "correlativo": 1,
+  "fechaEmision": "2026-07-27",
+  "cliente": {
+    "tipoDoc": "6",
+    "numDoc": "20123456789",
+    "rznSocial": "Distribuidora Andina S.A.C."
+  },
+  "items": [
+    {
+      "codProducto": "P001",
+      "descripcion": "Servicio de consultoría",
+      "unidad": "ZZ",
+      "cantidad": 1,
+      "mtoValorUnitario": 100.00,
+      "tipAfeIgv": "10"
+    }
+  ]
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. API TYPESCRIPT -->
+  <section id="typescript" aria-labelledby="ts-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Sección 3</span>
+      <h2 id="ts-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)]">Uso Programático en TypeScript / Bun</h2>
+    </div>
+    <div class="pane-row">
+      <div class="pane pane--console">
+        <div class="terminal-window">
+          <div class="terminal-window-header">
+            <span>typescript — integración modular</span>
+            <button class="copy-btn bg-transparent text-aged-rule border border-terminal-rule px-2.5 py-1 cursor-pointer hover:text-console-cream" data-copy-target="ts-code">Copiar</button>
+          </div>
+          <div class="terminal-window-body text-[0.8rem]">
+            <pre id="ts-code" is:raw><span class="text-aged-rule">import</span> { calcularCabecera } <span class="text-aged-rule">from</span> <span class="text-console-cream">'sunat-fe-core'</span>;
+<span class="text-aged-rule">import</span> { generarXmlFacturaBoleta } <span class="text-aged-rule">from</span> <span class="text-console-cream">'sunat-fe-xml'</span>;
+<span class="text-aged-rule">import</span> { enviarComprobante } <span class="text-aged-rule">from</span> <span class="text-console-cream">'sunat-fe-client'</span>;
+
+<span class="text-aged-rule">// 1. Calcular totales de IGV</span>
+<span class="text-stamp-red">const</span> calculo = calcularCabecera([
+  { cantidad: 1, mtoValorUnitario: 100, tipAfeIgv: '10' }
+]);
+
+<span class="text-aged-rule">// 2. Generar XML UBL 2.1</span>
+<span class="text-stamp-red">const</span> xmlStr = generarXmlFacturaBoleta({
+  tipoDoc: '01',
+  serie: 'F001',
+  correlativo: 1,
+  fechaEmision: '2026-07-27',
+  cliente: { tipoDoc: '6', numDoc: '20123456789', rznSocial: 'Andina SAC' },
+  items: [{ descripcion: 'Consultoría', cantidad: 1, mtoValorUnitario: 100, tipAfeIgv: '10' }]
+});
+
+console.log('Total a pagar:', calculo.mtoImpVenta); <span class="text-aged-rule">// 118.00</span></pre>
+          </div>
+        </div>
+      </div>
+      <div class="pane pane--paper">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Estructura de Paquetes</span>
+        <div class="table-container">
+          <table class="w-full border-collapse font-mono text-[0.82rem]">
+            <thead>
+              <tr><th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Paquete</th><th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Función Principal</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="py-2 px-1.5 border-b border-aged-rule font-bold text-stamp-red">sunat-fe-core</td><td class="py-2 px-1.5 border-b border-aged-rule">Catálogos 01-52 y motor de cálculo de IGV/totales.</td></tr>
+              <tr><td class="py-2 px-1.5 border-b border-aged-rule font-bold text-stamp-red">sunat-fe-xml</td><td class="py-2 px-1.5 border-b border-aged-rule">Plantillas UBL 2.1 estructuradas en XML UTF-8.</td></tr>
+              <tr><td class="py-2 px-1.5 border-b border-aged-rule font-bold text-stamp-red">sunat-fe-signer</td><td class="py-2 px-1.5 border-b border-aged-rule">Firma digital XML-DSig enveloped con certificado PEM.</td></tr>
+              <tr><td class="py-2 px-1.5 font-bold text-stamp-red">sunat-fe-client</td><td class="py-2 px-1.5">Compresión ISO-8859-1 ZIP y cliente SOAP WS-Security.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. PHP & LYCET API -->
+  <section id="php-lycet" aria-labelledby="php-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Sección 4</span>
+      <h2 id="php-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)]">Integración con PHP (Greenter) y Lycet REST API</h2>
+    </div>
+    <div class="pane-row">
+      <div class="pane pane--console">
+        <span class="block font-mono text-[0.72rem] uppercase tracking-wider text-aged-rule mb-3.5">Modo PHP (Greenter/lite)</span>
+        <p class="text-[0.92rem] leading-relaxed max-w-[44ch] text-aged-rule mb-4">Si el proyecto contiene <span class="font-mono">composer.json</span> con <span class="font-mono">greenter/lite</span>, la skill utiliza automáticamente el motor PHP nativo.</p>
+        <div class="terminal-window">
+          <div class="terminal-window-header"><span>php — greenter</span></div>
+          <div class="terminal-window-body text-[0.78rem]">
+            <pre><span class="text-aged-rule">$see = new \Greenter\See();</span>
+<span class="text-aged-rule">$see-&gt;setService(\Greenter\Model\Sale\Invoice::class);</span>
+<span class="text-stamp-red">$result = $see-&gt;send($invoice);</span></pre>
+          </div>
+        </div>
+      </div>
+      <div class="pane pane--paper">
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3.5">Modo API REST (Lycet)</span>
+        <p class="text-[0.92rem] leading-relaxed max-w-[46ch] mb-4">Para servicios en Python, Go o Java, se puede usar un servidor Lycet expuesto mediante HTTP/JSON:</p>
+        <div class="terminal-window border-aged-rule">
+          <div class="terminal-window-header bg-[#2a2620] text-console-cream"><span>bash — HTTP POST a Lycet</span></div>
+          <div class="terminal-window-body bg-[#181612] text-[0.78rem]">
+            <pre><span class="text-stamp-red">$</span> curl -X POST http://localhost:8080/api/v1/invoice/send \
+  -H "Content-Type: application/json" \
+  -d @factura.json</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CALCULO IGV -->
+  <section id="igv-formula" aria-labelledby="calc-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Sección 5</span>
+      <h2 id="calc-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)]">Fórmula Oficial de IGV y Reglas de Redondeo</h2>
+    </div>
+    <div class="pane pane--paper">
+      <p class="max-w-[62ch] leading-relaxed text-[1.02rem] mb-6">El impuesto (IGV 18%) se calcula agrupando por el tipo de afectación al IGV (Catálogo 07). La regla peruana exige redondeo aritmético estándar a 2 decimales en cada agrupación:</p>
+      
+      <div class="table-container">
+        <table class="w-full border-collapse font-mono text-[0.85rem]">
+          <thead>
+            <tr>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Tipo de Afectación</th>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Código Cat 07</th>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Fórmula IGV</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold">Gravado — Operación Onerosa</td><td class="py-2.5 px-1.5 border-b border-aged-rule text-stamp-red font-bold">10</td><td class="py-2.5 px-1.5 border-b border-aged-rule">IGV = ValorVenta × 0.18</td></tr>
+            <tr><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold">Exonerado — Operación Onerosa</td><td class="py-2.5 px-1.5 border-b border-aged-rule text-stamp-red font-bold">20</td><td class="py-2.5 px-1.5 border-b border-aged-rule">IGV = 0.00 (Monto Exonerado = ValorVenta)</td></tr>
+            <tr><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold">Inafecto — Operación Onerosa</td><td class="py-2.5 px-1.5 border-b border-aged-rule text-stamp-red font-bold">30</td><td class="py-2.5 px-1.5 border-b border-aged-rule">IGV = 0.00 (Monto Inafecto = ValorVenta)</td></tr>
+            <tr><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold">Exportación de Bienes/Servicios</td><td class="py-2.5 px-1.5 border-b border-aged-rule text-stamp-red font-bold">40</td><td class="py-2.5 px-1.5 border-b border-aged-rule">IGV = 0.00 (Monto Exportación = ValorVenta)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-8 p-5 border border-ledger-ink bg-[#f0eae0] font-mono text-[0.88rem] leading-relaxed">
+        <strong>Ejemplo Verificado:</strong><br />
+        1 Ítem Gravado: S/ 100.00 (Valor Venta)<br />
+        IGV (18%): S/ 18.00<br />
+        <strong>Monto Total de Venta: S/ 118.00</strong> (Leyenda: CIENTO DIECIOCHO Y 00/100 SOLES)
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. COMPROBANTES -->
+  <section id="comprobantes" aria-labelledby="comp-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Sección 6</span>
+      <h2 id="comp-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)]">Catálogo de Comprobantes y Transmisión</h2>
+    </div>
+    <div class="pane pane--paper">
+      <div class="table-container">
+        <table class="w-full border-collapse font-mono text-[0.82rem] sm:text-[0.85rem]">
+          <thead>
+            <tr>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Comprobante</th>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Código</th>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Transmisión</th>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Mecanismo de Respuesta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule font-bold">Factura Electrónica</td><td class="py-2 px-1.5 border-b border-aged-rule text-stamp-red">01</td><td class="py-2 px-1.5 border-b border-aged-rule">Síncrono (SOAP)</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">CDR inmediato en el sobre XML</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule font-bold">Boleta de Venta</td><td class="py-2 px-1.5 border-b border-aged-rule text-stamp-red">03</td><td class="py-2 px-1.5 border-b border-aged-rule">Síncrono (SOAP)</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">CDR inmediato en el sobre XML</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule font-bold">Nota de Crédito</td><td class="py-2 px-1.5 border-b border-aged-rule text-stamp-red">07</td><td class="py-2 px-1.5 border-b border-aged-rule">Síncrono (SOAP)</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">CDR inmediato en el sobre XML</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule font-bold">Nota de Débito</td><td class="py-2 px-1.5 border-b border-aged-rule text-stamp-red">08</td><td class="py-2 px-1.5 border-b border-aged-rule">Síncrono (SOAP)</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">CDR inmediato en el sobre XML</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule font-bold">Guía de Remisión Remitente</td><td class="py-2 px-1.5 border-b border-aged-rule text-stamp-red">09</td><td class="py-2 px-1.5 border-b border-aged-rule">Asíncrono (SEE-API)</td><td class="py-2 px-1.5 border-b border-aged-rule">OAuth2 REST + Ticket polling</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule font-bold">Resumen Diario / Baja</td><td class="py-2 px-1.5 border-b border-aged-rule text-stamp-red">RC / RA</td><td class="py-2 px-1.5 border-b border-aged-rule">Asíncrono (SOAP)</td><td class="py-2 px-1.5 border-b border-aged-rule">Ticket emitido → Polling <span class="font-mono">getStatus</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CODIGOS CDR -->
+  <section id="cdr-codigos" aria-labelledby="cdr-h">
+    <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Sección 7</span>
+      <h2 id="cdr-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)]">Interpretación de Códigos CDR de SUNAT</h2>
+    </div>
+    <div class="pane pane--paper">
+      <p class="max-w-[62ch] leading-relaxed mb-6">El CDR (Constancia de Recepción) es el único documento legalmente válido emitido por SUNAT que certifica la recepción y veredicto del comprobante:</p>
+      
+      <div class="table-container">
+        <table class="w-full border-collapse font-mono text-[0.82rem] sm:text-[0.85rem]">
+          <thead>
+            <tr>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Rango de Código</th>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Veredicto SUNAT</th>
+              <th class="text-left py-2 px-1.5 border-b-2 border-ledger-ink">Significado y Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold text-ledger-green">0</td><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold text-ledger-green">ACEPTADA</td><td class="py-2.5 px-1.5 border-b border-aged-rule">El comprobante fue recibido correctamente y tiene plena validez fiscal.</td></tr>
+            <tr><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold text-aged-rule">0100 – 1999</td><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold text-aged-rule">ACEPTADA CON OBSERVACIONES</td><td class="py-2.5 px-1.5 border-b border-aged-rule">Comprobante aceptado, pero SUNAT incluye advertencias que requieren corregir en futuras emisiones.</td></tr>
+            <tr><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold text-stamp-red">2000 – 3999</td><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold text-stamp-red">RECHAZADA</td><td class="py-2.5 px-1.5 border-b border-aged-rule">El comprobante fue rechazado por error de catálogo, firma o cálculo. No tiene validez fiscal.</td></tr>
+            <tr><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold text-stamp-red">4000+</td><td class="py-2.5 px-1.5 border-b border-aged-rule font-bold text-stamp-red">EXCEPCIÓN TÉCNICA</td><td class="py-2.5 px-1.5 border-b border-aged-rule">Falla de comunicación, webservice caído o SOAP Fault. Se permite reintento.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIE DE DOCUMENTACION -->
+  <section aria-label="cierre-doc">
+    <div class="bg-paper px-6 sm:px-10 md:px-16 lg:px-20 py-16 md:py-24 text-center border-t border-dashed border-aged-rule">
+      <h2 class="font-serif text-[clamp(1.6rem,3.5vw,2.5rem)] mb-4">¿Listo para empezar a emitir?</h2>
+      <p class="max-w-[48ch] mx-auto text-aged-rule leading-relaxed mb-8">Instala la skill en tu agente Claude Code o ejecuta el CLI nativo directamente en tu terminal.</p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="/cli/#instalacion-h" class="inline-block font-mono text-[0.85rem] uppercase tracking-wide no-underline px-6 py-3.5 bg-stamp-red text-paper font-semibold hover:bg-stamp-red/90 transition-colors shadow-md">Instalar Skill / CLI →</a>
+        <a href="/cli/" class="inline-block font-mono text-[0.85rem] uppercase tracking-wide no-underline px-6 py-3.5 border border-ledger-ink text-ledger-ink hover:bg-ledger-ink hover:text-paper transition-colors">Ver Referencia CLI →</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

@@ -2,12 +2,13 @@
 interface Props {
   title: string;
   description: string;
-  activo?: 'inicio' | 'cli' | 'catalogos' | 'arquitectura';
+  activo?: 'inicio' | 'cli' | 'catalogos' | 'arquitectura' | 'documentacion';
 }
 const { title, description, activo = 'inicio' } = Astro.props;
 
 const enlaces = [
   { href: '/', clave: 'inicio', etiqueta: 'Inicio' },
+  { href: '/documentacion/', clave: 'documentacion', etiqueta: 'Documentación' },
   { href: '/cli/', clave: 'cli', etiqueta: 'CLI' },
   { href: '/catalogos/', clave: 'catalogos', etiqueta: 'Catálogos' },
   { href: '/arquitectura/', clave: 'arquitectura', etiqueta: 'Arquitectura' },
