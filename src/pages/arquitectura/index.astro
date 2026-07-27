@@ -22,11 +22,18 @@ import Base from '../../layouts/Base.astro';
     </div>
     <div class="pane-row">
       <div class="pane pane--console">
-        <div class="font-mono text-[0.88rem] leading-loose whitespace-pre-wrap"><span class="text-stamp-red">sunat-facturacion-electronica</span>  índice / router
+        <div class="terminal-window">
+          <div class="terminal-window-header">
+            <span>skills — mapa de sub-skills</span>
+          </div>
+          <div class="terminal-window-body">
+            <pre><span class="text-stamp-red">sunat-facturacion-electronica</span>  índice / router
 <span class="text-stamp-red">sunat-catalogos</span>              códigos de catálogo
 <span class="text-stamp-red">sunat-calculo</span>                montos / IGV
 <span class="text-stamp-red">sunat-comprobantes</span>           orquesta el flujo completo
-<span class="text-stamp-red">sunat-cli</span>                    CLI / paquete npm</div>
+<span class="text-stamp-red">sunat-cli</span>                    CLI / paquete npm</pre>
+          </div>
+        </div>
       </div>
       <div class="pane pane--paper">
         <p class="max-w-[52ch] leading-relaxed">Un pedido de "generar una factura" entra por el índice, que enruta a <span class="font-mono">sunat-comprobantes</span> — esta a su vez usa <span class="font-mono">sunat-catalogos</span> y <span class="font-mono">sunat-calculo</span> como sub-pasos, y <span class="font-mono">sunat-cli</span> si el motor elegido es el paquete nativo.</p>
@@ -41,22 +48,24 @@ import Base from '../../layouts/Base.astro';
       <h2 id="paquetes-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">Cinco paquetes, cada uno con su propia frontera.</h2>
     </div>
     <div class="pane pane--paper">
-      <table class="w-full border-collapse font-mono text-[0.85rem]">
-        <thead>
-          <tr>
-            <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Paquete</th>
-            <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Responsabilidad</th>
-            <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="py-2 px-1.5 border-b border-aged-rule">sunat-fe-core</td><td class="py-2 px-1.5 border-b border-aged-rule">tipos, catálogos, cálculo de montos/IGV</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">✅ probado</td></tr>
-          <tr><td class="py-2 px-1.5 border-b border-aged-rule">sunat-fe-xml</td><td class="py-2 px-1.5 border-b border-aged-rule">genera UBL 2.1 (Factura/Boleta)</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">✅ probado</td></tr>
-          <tr><td class="py-2 px-1.5 border-b border-aged-rule">sunat-fe-signer</td><td class="py-2 px-1.5 border-b border-aged-rule">firma XML-DSig (xml-crypto)</td><td class="py-2 px-1.5 border-b border-aged-rule text-stamp-red">⚠️ SUNAT la rechaza</td></tr>
-          <tr><td class="py-2 px-1.5 border-b border-aged-rule">sunat-fe-client</td><td class="py-2 px-1.5 border-b border-aged-rule">zip + SOAP + CDR</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green">✅ verificado end-to-end</td></tr>
-          <tr><td class="py-2 px-1.5">sunat-fe (CLI)</td><td class="py-2 px-1.5">orquesta los cuatro anteriores</td><td class="py-2 px-1.5 text-aged-rule">📦 sin publicar</td></tr>
-        </tbody>
-      </table>
+      <div class="table-container">
+        <table class="w-full border-collapse font-mono text-[0.82rem] sm:text-[0.85rem]">
+          <thead>
+            <tr>
+              <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Paquete</th>
+              <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Responsabilidad</th>
+              <th class="text-left py-2 px-1.5 text-[0.7rem] uppercase tracking-wide text-aged-rule font-medium border-b-2 border-ledger-ink">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule whitespace-nowrap">sunat-fe-core</td><td class="py-2 px-1.5 border-b border-aged-rule">tipos, catálogos, cálculo de montos/IGV</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green whitespace-nowrap">✅ probado</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule whitespace-nowrap">sunat-fe-xml</td><td class="py-2 px-1.5 border-b border-aged-rule">genera UBL 2.1 (Factura/Boleta)</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green whitespace-nowrap">✅ probado</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule whitespace-nowrap">sunat-fe-signer</td><td class="py-2 px-1.5 border-b border-aged-rule">firma XML-DSig (xml-crypto)</td><td class="py-2 px-1.5 border-b border-aged-rule text-stamp-red whitespace-nowrap">⚠️ SUNAT la rechaza</td></tr>
+            <tr><td class="py-2 px-1.5 border-b border-aged-rule whitespace-nowrap">sunat-fe-client</td><td class="py-2 px-1.5 border-b border-aged-rule">zip + SOAP + CDR</td><td class="py-2 px-1.5 border-b border-aged-rule text-ledger-green whitespace-nowrap">✅ verificado end-to-end</td></tr>
+            <tr><td class="py-2 px-1.5 whitespace-nowrap">sunat-fe (CLI)</td><td class="py-2 px-1.5">orquesta los cuatro anteriores</td><td class="py-2 px-1.5 text-aged-rule whitespace-nowrap">📦 sin publicar</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 

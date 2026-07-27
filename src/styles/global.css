@@ -73,7 +73,7 @@
 
   /* The two grounds themselves (DESIGN.md Colors) — reused across every
      section's dual-pane split, so they earn a name rather than repetition. */
-  .pane { @apply p-8 sm:p-10 md:p-16 lg:p-20; }
+  .pane { @apply p-5 sm:p-8 md:p-14 lg:p-20 overflow-hidden w-full; }
   .pane--console { @apply bg-terminal-black text-console-cream; }
   .pane--paper { @apply bg-paper text-ledger-ink; }
 
@@ -87,15 +87,20 @@
 
   /* Terminal window container for code blocks. */
   .terminal-window {
-    @apply border border-terminal-rule bg-[#0b0907] my-5 overflow-hidden text-left;
+    @apply border border-terminal-rule bg-[#0b0907] my-4 sm:my-5 overflow-hidden text-left rounded-sm w-full max-w-full;
   }
   .terminal-window-header {
-    @apply flex items-center justify-between bg-[#1a1712] px-4 py-2 border-b border-terminal-rule font-mono text-[0.7rem] uppercase tracking-wider text-aged-rule select-none;
+    @apply flex items-center justify-between bg-[#1a1712] px-3 sm:px-4 py-2 border-b border-terminal-rule font-mono text-[0.68rem] sm:text-[0.7rem] uppercase tracking-wider text-aged-rule select-none gap-2;
   }
   .terminal-window-body {
-    @apply p-4 sm:p-5 font-mono text-[0.85rem] leading-relaxed text-console-cream overflow-x-auto;
+    @apply p-3.5 sm:p-5 font-mono text-[0.8rem] sm:text-[0.85rem] leading-relaxed text-console-cream overflow-x-auto max-w-full;
   }
   .terminal-window-body pre {
-    @apply m-0 font-mono text-[0.85rem] leading-relaxed overflow-x-auto whitespace-pre font-normal text-console-cream;
+    @apply m-0 font-mono text-[0.8rem] sm:text-[0.85rem] leading-relaxed overflow-x-auto whitespace-pre font-normal text-console-cream max-w-full;
+  }
+
+  /* Responsive table wrapper */
+  .table-container {
+    @apply w-full overflow-x-auto my-3 scrollbar-thin;
   }
 }

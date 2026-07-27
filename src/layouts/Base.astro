@@ -30,27 +30,27 @@ const enlaces = [
 </head>
 <body>
 
-  <div class="sticky top-0 z-20 flex items-center gap-4 bg-terminal-black text-console-cream px-5 py-3.5 font-mono text-[0.8rem] tracking-wide border-b border-terminal-rule">
-    <a href="/" class="flex items-center gap-3 no-underline shrink-0 text-console-cream hover:opacity-90">
-      <img src="/favicon.svg" alt="SUNAT FE Logo" class="w-6 h-6 shrink-0" />
-      <span class="text-aged-rule/90 whitespace-nowrap overflow-hidden text-ellipsis hover:text-console-cream font-mono">~/.claude/skills/sunat-facturacion-electronica</span>
+  <div class="sticky top-0 z-20 flex items-center justify-between gap-3 bg-terminal-black text-console-cream px-4 sm:px-6 py-3 font-mono text-[0.8rem] tracking-wide border-b border-terminal-rule">
+    <a href="/" class="flex items-center gap-2.5 min-w-0 no-underline text-console-cream hover:opacity-90">
+      <img src="/favicon.svg" alt="SUNAT FE Logo" class="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
+      <span class="text-aged-rule/90 truncate font-mono text-[0.75rem] sm:text-[0.8rem] max-w-[180px] xs:max-w-[260px] sm:max-w-none">~/.claude/skills/sunat-facturacion-electronica</span>
     </a>
-    <nav class="ml-auto hidden md:flex gap-5">
+    <nav class="ml-auto hidden md:flex gap-5 shrink-0">
       {enlaces.map((e) => (
         <a
           class:list={[
-            'no-underline uppercase text-[0.72rem] tracking-wider hover:opacity-100 hover:border-b hover:border-stamp-red',
+            'no-underline uppercase text-[0.72rem] tracking-wider hover:opacity-100 hover:border-b hover:border-stamp-red transition-opacity',
             activo === e.clave ? 'opacity-100 border-b border-stamp-red' : 'opacity-75',
           ]}
           href={e.href}
         >{e.etiqueta}</a>
       ))}
     </nav>
-    <details class="titlebar-menu md:hidden ml-auto relative">
-      <summary class="text-[0.72rem] uppercase tracking-wider">Menú</summary>
-      <nav class="absolute top-[calc(100%+0.6rem)] right-0 flex flex-col gap-0 bg-terminal-black border border-terminal-rule py-1.5 min-w-[180px]">
+    <details class="titlebar-menu md:hidden ml-auto relative shrink-0">
+      <summary class="text-[0.72rem] uppercase tracking-wider border border-terminal-rule px-2.5 py-1 rounded-sm bg-terminal-black text-console-cream hover:border-console-cream">Menú ▾</summary>
+      <nav class="absolute top-[calc(100%+0.6rem)] right-0 flex flex-col gap-0 bg-terminal-black border border-terminal-rule py-1.5 min-w-[180px] shadow-xl z-30">
         {enlaces.map((e) => (
-          <a class="no-underline px-4 py-2 opacity-85 hover:bg-terminal-rule" href={e.href}>{e.etiqueta}</a>
+          <a class="no-underline px-4 py-2.5 text-[0.8rem] opacity-85 hover:bg-terminal-rule text-console-cream hover:text-white" href={e.href}>{e.etiqueta}</a>
         ))}
       </nav>
     </details>
