@@ -8,7 +8,7 @@ body:
       value: |
         La claridad en la documentación tributaria ahorra horas de depuración. ¡Gracias por mejorar nuestras guías!
 
-  - type: select
+  - type: dropdown
     id: doc_location
     attributes:
       label: 📍 Ubicación de la Documentación

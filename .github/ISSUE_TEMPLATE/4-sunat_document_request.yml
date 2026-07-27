@@ -17,7 +17,7 @@ body:
     validations:
       required: true
 
-  - type: select
+  - type: dropdown
     id: transmission_type
     attributes:
       label: 📡 Mecanismo de Transmisión SUNAT

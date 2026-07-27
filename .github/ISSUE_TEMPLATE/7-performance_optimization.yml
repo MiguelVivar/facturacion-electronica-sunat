@@ -8,7 +8,7 @@ body:
       value: |
         Reporta cuellos de botella en el procesamiento masivo de comprobantes o llamadas SOAP.
 
-  - type: select
+  - type: dropdown
     id: area
     attributes:
       label: ⚡ Área de Desempeño
