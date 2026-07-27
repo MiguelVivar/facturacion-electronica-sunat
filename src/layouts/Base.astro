@@ -77,7 +77,7 @@ const ogImageUrl = 'https://fe.visox.tech/logo.svg';
       <img src="/favicon.svg" alt="SUNAT FE Logo" class="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
       <span class="text-aged-rule/90 truncate font-mono text-[0.75rem] sm:text-[0.8rem] max-w-[180px] xs:max-w-[260px] sm:max-w-none">~/.claude/skills/sunat-facturacion-electronica</span>
     </a>
-    <nav class="ml-auto hidden md:flex gap-5 shrink-0">
+    <nav class="ml-auto hidden md:flex items-center gap-5 shrink-0">
       {enlaces.map((e) => (
         <a
           class:list={[
@@ -87,13 +87,19 @@ const ogImageUrl = 'https://fe.visox.tech/logo.svg';
           href={e.href}
         >{e.etiqueta}</a>
       ))}
+      <a href="https://github.com/MiguelVivar/facturacion-electronica-sunat" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 border border-terminal-rule hover:border-stamp-red px-2.5 py-1 text-[0.72rem] text-console-cream no-underline rounded-sm transition-colors ml-2">
+        <svg class="w-3.5 h-3.5 fill-current text-console-cream" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub</span>
+        <span class="text-stamp-red font-semibold ml-0.5">★ 1</span>
+      </a>
     </nav>
     <details class="titlebar-menu md:hidden ml-auto relative shrink-0">
       <summary class="text-[0.72rem] uppercase tracking-wider border border-terminal-rule px-2.5 py-1 rounded-sm bg-terminal-black text-console-cream hover:border-console-cream">Menú ▾</summary>
-      <nav class="absolute top-[calc(100%+0.6rem)] right-0 flex flex-col gap-0 bg-terminal-black border border-terminal-rule py-1.5 min-w-[180px] shadow-xl z-30">
+      <nav class="absolute top-[calc(100%+0.6rem)] right-0 flex flex-col gap-0 bg-terminal-black border border-terminal-rule py-1.5 min-w-[200px] shadow-xl z-30">
         {enlaces.map((e) => (
           <a class="no-underline px-4 py-2.5 text-[0.8rem] opacity-85 hover:bg-terminal-rule text-console-cream hover:text-white" href={e.href}>{e.etiqueta}</a>
         ))}
+        <a class="no-underline px-4 py-2.5 text-[0.8rem] text-stamp-red font-semibold hover:bg-terminal-rule" href="https://github.com/MiguelVivar/facturacion-electronica-sunat" target="_blank" rel="noopener noreferrer">GitHub (★ 1 Stars)</a>
       </nav>
     </details>
   </div>
@@ -107,6 +113,10 @@ const ogImageUrl = 'https://fe.visox.tech/logo.svg';
       <img src="/logo.svg" alt="Facturación Electrónica SUNAT Logo" class="h-10 w-auto opacity-90" />
     </div>
     <p class="text-aged-rule max-w-[50ch] mx-auto mb-4 leading-relaxed">sunat-facturacion-electronica: un skill que sabe que un comprobante mal emitido tiene consecuencias tributarias reales, no solo un bug que revertir.</p>
+    <div class="flex items-center justify-center gap-3 my-5 flex-wrap">
+      <span class="border border-terminal-rule px-3 py-1 text-[0.72rem] text-aged-rule">Licencia MIT (100% Open Source)</span>
+      <a href="https://github.com/MiguelVivar/facturacion-electronica-sunat" target="_blank" rel="noopener noreferrer" class="border border-stamp-red text-stamp-red hover:bg-stamp-red hover:text-paper px-3 py-1 text-[0.72rem] no-underline transition-colors font-semibold">GitHub Repository ★ 1 Stars</a>
+    </div>
     <hr class="border-0 border-t border-dashed border-terminal-rule my-6 max-w-[320px] mx-auto" />
     <p>$ echo "comprobante generado · ledger cerrado"</p>
   </footer>
