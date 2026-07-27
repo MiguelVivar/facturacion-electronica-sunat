@@ -1,0 +1,35 @@
+name: '🧪 Caso de Prueba / Test Tributario'
+description: Aporta un escenario de prueba real (ej. Factura con cálculo de bolsa plástica ICBPER, detracción mixta, etc.).
+title: '🧪 [TEST]: '
+labels: ['testing']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Los tests unitarios garantizan la precisión tributaria del proyecto. ¡Comparte tus casos de prueba!
+
+  - type: input
+    id: scenario_name
+    attributes:
+      label: 📌 Nombre del Escenario de Prueba
+      description: Ejemplo: "Factura en Dólares con Ítem Exonerado + Ítem Gravado + Leyenda 1002"
+      placeholder: 'Factura con ICBPER e IGV Mixto'
+    validations:
+      required: true
+
+  - type: textarea
+    id: test_data
+    attributes:
+      label: 📋 Datos de Entrada (JSON de Ítems / Cabecera)
+      description: Proporciona la estructura JSON de prueba.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_totals
+    attributes:
+      label: 🎯 Totales Calculados Esperados
+      description: Indica los montos exactos de IGV, Subtotal, Leyendas y Total a Pagar esperados.
+    validations:
+      required: true

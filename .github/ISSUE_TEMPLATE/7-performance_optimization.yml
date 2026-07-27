@@ -1,0 +1,31 @@
+name: '⚡ Optimización de Rendimiento'
+description: Propón mejoras en la velocidad de generación XML, compresión ZIP, firma o consumo de memoria.
+title: '⚡ [PERF]: '
+labels: ['performance']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Reporta cuellos de botella en el procesamiento masivo de comprobantes o llamadas SOAP.
+
+  - type: select
+    id: area
+    attributes:
+      label: ⚡ Área de Desempeño
+      description: Selecciona el componente donde ocurre la latencia.
+      options:
+        - 'Generación de XML UBL 2.1 (@miguelvivar/sunat-fe-xml)'
+        - 'Firma Digital XML-DSig (@miguelvivar/sunat-fe-signer)'
+        - 'Empaquetado / Compresión ZIP (@miguelvivar/sunat-fe-client)'
+        - 'Consumo del CLI (sunat-fe en procesamiento en lote)'
+        - 'Sitio Web Astro (fe.visox.tech)'
+    validations:
+      required: true
+
+  - type: textarea
+    id: benchmark
+    attributes:
+      label: 📊 Rendimiento Actual vs Esperado
+      description: Métricas medidas (ej. 1,000 facturas en 4.2s vs 1.1s esperado).
+    validations:
+      required: true

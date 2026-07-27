@@ -1,0 +1,47 @@
+name: '📑 Solicitud de Comprobante / Catálogo SUNAT'
+description: Propón el soporte para un nuevo tipo de comprobante (Guía, Retención, Percepción) o catálogo tributario SUNAT.
+title: '📑 [SUNAT]: '
+labels: ['sunat-spec', 'enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Utiliza esta plantilla para proponer la implementación o actualización de un comprobante electrónico o catálogo tributario oficial de SUNAT.
+
+  - type: input
+    id: catalog_number
+    attributes:
+      label: 🔢 Número de Catálogo o Tipo de Comprobante
+      description: Ejemplo: Catálogo 54 (Bienes y Servicios Sujetos a Detracción), Comprobante 09 (Guía de Remisión).
+      placeholder: 'Catálogo 54 / Comprobante 09'
+    validations:
+      required: true
+
+  - type: select
+    id: transmission_type
+    attributes:
+      label: 📡 Mecanismo de Transmisión SUNAT
+      description: ¿Cómo se transmite este comprobante a la SUNAT?
+      options:
+        - 'Síncrono (billService SOAP - sendBill)'
+        - 'Asíncrono (billService SOAP - sendSummary / Ticket)'
+        - 'REST API (SEE-API OAuth2)'
+        - 'No aplica (Solo Catálogo o Regla de Cálculo)'
+    validations:
+      required: true
+
+  - type: textarea
+    id: resolution_ref
+    attributes:
+      label: 📜 Resolución de Superintendencia / Anexo UBL 2.1
+      description: Enlace o referencia a la norma legal de SUNAT que define la estructura XML y catálogos.
+      placeholder: 'R.S. N° 000123-2023/SUNAT - Anexo 1'
+    validations:
+      required: true
+
+  - type: textarea
+    id: xml_example
+    attributes:
+      label: 📄 Estructura XML UBL 2.1 Esperada
+      description: Adjunta un fragmento de XML de ejemplo si dispones de él.
+      render: xml

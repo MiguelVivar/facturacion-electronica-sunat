@@ -1,0 +1,36 @@
+name: '📖 Mejora de Documentación / Ejemplos'
+description: Propón mejoras para el sitio web (https://fe.visox.tech/), las Skills de Claude Code o los READMEs.
+title: '📖 [DOCS]: '
+labels: ['documentation']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        La claridad en la documentación tributaria ahorra horas de depuración. ¡Gracias por mejorar nuestras guías!
+
+  - type: select
+    id: doc_location
+    attributes:
+      label: 📍 Ubicación de la Documentación
+      description: Selecciona qué sección necesita mejoras.
+      options:
+        - 'Sitio Web (fe.visox.tech / documentacion)'
+        - 'Skills de Claude Code (.claude/skills/)'
+        - 'README del Proyecto o de Paquetes TS'
+        - 'Ejemplos JSON / XML (ejemplos/)'
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_issue
+    attributes:
+      label: 🔍 ¿Qué información falta o está desactualizada?
+      description: Describe el problema actual o la omisión.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_text
+    attributes:
+      label: ✏️ Texto o Ejemplo Propuesto
+      description: Escribe el texto o código corregido que sugieres incluir.
