@@ -17,19 +17,22 @@ import Base from '../../layouts/Base.astro';
 
   <section aria-labelledby="instalacion-h">
     <div class="reveal bg-paper px-6 sm:px-10 md:px-16 lg:px-20 pt-10">
-      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Instalación</span>
-      <h2 id="instalacion-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">El mecanismo de distribución final aún no está definido.</h2>
-      <p class="mt-3.5 max-w-[58ch] text-[1.02rem] leading-relaxed">Hoy vive como monorepo Bun. Dentro del proyecto:</p>
+      <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3">Instalación Global y Skill</span>
+      <h2 id="instalacion-h" class="font-serif text-[clamp(1.5rem,3vw,2.1rem)] max-w-[32ch]">Instala la skill en Claude Code o el CLI nativo global.</h2>
+      <p class="mt-3.5 max-w-[58ch] text-[1.02rem] leading-relaxed">Puedes descargar el zip de la release v0.1.0 o instalar directamente desde GitHub:</p>
     </div>
     <div class="pane-row">
       <div class="pane pane--console">
         <div class="relative bg-[#0f0d09] border border-terminal-rule p-5">
           <button class="copy-btn absolute top-2.5 right-2.5 font-mono text-[0.68rem] uppercase tracking-wide bg-transparent text-aged-rule border border-terminal-rule px-2.5 py-1.5 cursor-pointer hover:text-console-cream hover:border-console-cream" data-copy-target="install-code">Copiar</button>
-          <div class="font-mono text-[0.92rem] leading-loose whitespace-pre-wrap" id="install-code"><span class="text-stamp-red">$</span> bun install
-<span class="text-stamp-red">$</span> bun run --cwd packages/cli build
-<span class="text-stamp-red">$</span> node packages/cli/dist/cli.js --help</div>
+          <div class="font-mono text-[0.88rem] leading-loose whitespace-pre-wrap" id="install-code"><span class="text-aged-rule"># Instalar Skill en Claude Code</span>
+<span class="text-stamp-red">$</span> git clone https://github.com/MiguelVivar/facturacion-electronica-sunat.git ~/.claude/skills/sunat-facturacion-electronica
+
+<span class="text-aged-rule"># Instalar CLI global con npm / bun</span>
+<span class="text-stamp-red">$</span> npm install -g git+https://github.com/MiguelVivar/facturacion-electronica-sunat.git
+<span class="text-stamp-red">$</span> sunat-fe --help</div>
         </div>
-        <p class="font-mono text-[0.7rem] text-[#6b6455] mt-4">Placeholder: aún no publicado en el registro público de npm.</p>
+        <p class="font-mono text-[0.7rem] text-console-cream/80 mt-4">Disponible en GitHub Releases v0.1.0 (.zip para la skill y .tgz para npm/bun).</p>
       </div>
       <div class="pane pane--paper">
         <div class="flex gap-3 flex-wrap">

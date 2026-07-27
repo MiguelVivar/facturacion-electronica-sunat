@@ -1,5 +1,7 @@
 # build output
 dist/
+*.zip
+*.tgz
 # generated types
 .astro/
 
