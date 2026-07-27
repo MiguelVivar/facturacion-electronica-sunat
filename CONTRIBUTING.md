@@ -6,14 +6,13 @@
 
 ## 🌿 Estrategia de Ramas (Git Workflow)
 
-- **`main`**: Rama de producción y lanzamientos estables. **Prohibido hacer `git push` directo a `main`**.
-- **`dev`**: Rama principal de desarrollo donde se integran las nuevas características y correcciones antes de un release.
-- **Ramas de características (`feature/*` o `fix/*`)**: Deben crearse a partir de `dev` y enviarse mediante un **Pull Request (PR)** hacia `dev`.
+- **`main`**: Rama principal del proyecto.
+- **Ramas de características (`feature/*` o `fix/*`)**: Deben enviarse mediante un **Pull Request (PR)** hacia `main`.
 
 ```bash
-# Crear tu rama desde dev
-git checkout dev
-git pull origin dev
+# Crear tu rama desde main
+git checkout main
+git pull origin main
 git checkout -b feature/nueva-funcionalidad
 ```
 
@@ -67,7 +66,7 @@ Todos los commits deben cumplir con la especificación de [Conventional Commits]
    bun run knip
    bun run build
    ```
-2. Crea el Pull Request apuntando a la rama **`dev`**.
+2. Crea el Pull Request apuntando a la rama **`main`**.
 3. El flujo automatizado de CI (GitHub Actions) validará:
    - Formato de Conventional Commits.
    - Compilación en TypeScript estricto.
