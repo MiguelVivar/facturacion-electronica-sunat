@@ -21,6 +21,6 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.1.4",
     "tailwindcss": "^4.3.3",
-    "sunat-fe-core": "workspace:*"
+    "@miguelvivar/sunat-fe-core": "workspace:*"
   }
 }

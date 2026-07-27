@@ -9,6 +9,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       alias: {
+        '@miguelvivar/sunat-fe-core': path.resolve('./packages/core/src/index.ts'),
         'sunat-fe-core': path.resolve('./packages/core/src/index.ts')
       }
     }

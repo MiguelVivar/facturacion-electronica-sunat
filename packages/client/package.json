@@ -1,5 +1,5 @@
 {
-  "name": "sunat-fe-client",
+  "name": "@miguelvivar/sunat-fe-client",
   "version": "0.1.0",
   "description": "Cliente SOAP para el billService de SUNAT: empaqueta (zip), envía sendBill y desempaqueta/interpreta el CDR.",
   "type": "module",
@@ -11,7 +11,16 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguelVivar/facturacion-electronica-sunat.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "build": "tsc -b",
     "test": "bun test"
@@ -23,9 +32,9 @@
   "devDependencies": {
     "typescript": "^5.7.0",
     "@types/bun": "^1.3.0",
-    "sunat-fe-core": "workspace:*",
-    "sunat-fe-xml": "workspace:*",
-    "sunat-fe-signer": "workspace:*"
+    "@miguelvivar/sunat-fe-core": "workspace:*",
+    "@miguelvivar/sunat-fe-xml": "workspace:*",
+    "@miguelvivar/sunat-fe-signer": "workspace:*"
   },
   "license": "MIT"
 }

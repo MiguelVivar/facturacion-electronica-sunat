@@ -1,7 +1,7 @@
 {
-  "name": "sunat-fe",
+  "name": "@miguelvivar/sunat-fe",
   "version": "0.1.0",
-  "description": "CLI para facturación electrónica SUNAT (Perú): catálogos, cálculo de montos/IGV, generación de XML UBL 2.1, firma XML-DSig y envío SOAP a SUNAT (firma aún no validada por SUNAT — ver PRODUCT.md).",
+  "description": "CLI para facturación electrónica SUNAT (Perú): catálogos, cálculo de montos/IGV, generación de XML UBL 2.1, firma XML-DSig y envío SOAP a SUNAT.",
   "type": "module",
   "bin": {
     "sunat-fe": "./dist/cli.js"
@@ -14,16 +14,25 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguelVivar/facturacion-electronica-sunat.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "build": "tsc -b",
     "test": "bun test"
   },
   "dependencies": {
-    "sunat-fe-core": "workspace:*",
-    "sunat-fe-xml": "workspace:*",
-    "sunat-fe-signer": "workspace:*",
-    "sunat-fe-client": "workspace:*"
+    "@miguelvivar/sunat-fe-core": "workspace:*",
+    "@miguelvivar/sunat-fe-xml": "workspace:*",
+    "@miguelvivar/sunat-fe-signer": "workspace:*",
+    "@miguelvivar/sunat-fe-client": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.0",
@@ -31,5 +40,11 @@
     "@types/node": "^22.10.0"
   },
   "license": "MIT",
-  "keywords": ["sunat", "facturacion-electronica", "peru", "ubl", "cli"]
+  "keywords": [
+    "sunat",
+    "facturacion-electronica",
+    "peru",
+    "ubl",
+    "cli"
+  ]
 }

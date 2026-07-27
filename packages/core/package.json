@@ -1,5 +1,5 @@
 {
-  "name": "sunat-fe-core",
+  "name": "@miguelvivar/sunat-fe-core",
   "version": "0.1.0",
   "description": "Tipos, catálogos y cálculo de montos/IGV para comprobantes electrónicos SUNAT (Perú). Sin I/O ni dependencias externas.",
   "type": "module",
@@ -11,7 +11,16 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguelVivar/facturacion-electronica-sunat.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "build": "tsc -b",
     "test": "bun test"
