@@ -53,21 +53,22 @@ import { TIPOS_DOCUMENTO, TIPOS_AFECTACION_IGV, MONEDAS, UNIDADES_MEDIDA } from 
         </div>
       </div>
       <div class="pane pane--paper">
-        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3.5">B. CLI Nativo (sunat-fe)</span>
+        <span class="block font-mono text-[0.75rem] uppercase tracking-wider text-stamp-red mb-3.5">B. CLI y Paquetes npm (GitHub Packages)</span>
         <div class="terminal-window border-aged-rule">
           <div class="terminal-window-header bg-[#2a2620] text-console-cream">
-            <span>bash — CLI global</span>
+            <span>bash — GitHub Packages</span>
             <button class="copy-btn bg-transparent text-console-cream border border-aged-rule px-2.5 py-1 cursor-pointer" data-copy-target="cli-global-code">Copiar</button>
           </div>
           <div class="terminal-window-body bg-[#181612]">
-            <pre id="cli-global-code"><span class="text-aged-rule"># Instalar globalmente con npm</span>
-<span class="text-stamp-red">$</span> npm install -g git+https://github.com/MiguelVivar/facturacion-electronica-sunat.git
+            <pre id="cli-global-code" is:raw><span class="text-aged-rule"># 1. Añadir el registro en ~/.npmrc o .npmrc</span>
+@miguelvivar:registry=https://npm.pkg.github.com
 
-<span class="text-aged-rule"># O instalar globalmente con Bun</span>
-<span class="text-stamp-red">$</span> bun add -g git+https://github.com/MiguelVivar/facturacion-electronica-sunat.git
+<span class="text-aged-rule"># 2. Instalar CLI global publicado</span>
+<span class="text-stamp-red">$</span> bun add -g @miguelvivar/sunat-fe
+<span class="text-stamp-red">$</span> npm install -g @miguelvivar/sunat-fe
 
-<span class="text-aged-rule"># Verificar instalación</span>
-<span class="text-stamp-red">$</span> sunat-fe --help</pre>
+<span class="text-aged-rule"># 3. Instalar paquetes TypeScript</span>
+<span class="text-stamp-red">$</span> bun add @miguelvivar/sunat-fe-core @miguelvivar/sunat-fe-xml @miguelvivar/sunat-fe-signer @miguelvivar/sunat-fe-client</pre>
           </div>
         </div>
       </div>

@@ -65,12 +65,29 @@ El ecosistema detecta y soporta tres modelos de integración según las necesida
 - `sunat-calculo`: Fórmulas matemáticas de IGV, bases imponibles y agrupadors.
 - `sunat-cli`: Uso de la herramienta CLI nativa.
 
-### 2. Paquetes Nativo TypeScript (`packages/`)
-- `packages/core` (`sunat-fe-core`): Catálogos y motor de cálculo de montos/IGV.
-- `packages/xml` (`sunat-fe-xml`): Generador de estructuras UBL 2.1 XML en UTF-8.
-- `packages/client` (`sunat-fe-client`): Cliente SOAP (WS-Security + empaquetado ZIP ISO-8859-1).
-- `packages/signer` (`sunat-fe-signer`): Firma digital XML-DSig enveloped.
-- `packages/cli` (`sunat-fe`): CLI ejecutable (`catalogo`, `calcular`, `generar-xml`, `firmar`, `enviar`).
+### 2. Paquetes Nativos TypeScript (`packages/`)
+Publicados en **GitHub Packages** (`https://npm.pkg.github.com`):
+
+- `@miguelvivar/sunat-fe-core`: Catálogos y motor de cálculo de montos/IGV.
+- `@miguelvivar/sunat-fe-xml`: Generador de estructuras UBL 2.1 XML en UTF-8.
+- `@miguelvivar/sunat-fe-client`: Cliente SOAP (WS-Security + empaquetado ZIP ISO-8859-1).
+- `@miguelvivar/sunat-fe-signer`: Firma digital XML-DSig enveloped.
+- `@miguelvivar/sunat-fe`: CLI ejecutable (`catalogo`, `calcular`, `generar-xml`, `firmar`, `enviar`).
+
+#### 📥 Instalación de Paquetes Publicados:
+
+```bash
+# 1. Configurar el registro en tu ~/.npmrc
+@miguelvivar:registry=https://npm.pkg.github.com
+
+# 2. Instalar el CLI ejecutable globalmente
+bun add -g @miguelvivar/sunat-fe
+# o con npm:
+npm install -g @miguelvivar/sunat-fe
+
+# 3. O instalar las librerías en tu proyecto TypeScript
+bun add @miguelvivar/sunat-fe-core @miguelvivar/sunat-fe-xml
+```
 
 ---
 
