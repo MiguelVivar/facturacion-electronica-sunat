@@ -115,6 +115,14 @@ describe('consultarEstadoGre', () => {
     expect(resultado.cdrXml).toBe(cdr);
   });
 
+  test('codifica el ticket en la URL en vez de dejarlo romper el path (url-path-injection)', async () => {
+    const { peticiones } = mockearFetch([{ cuerpo: JSON.stringify({ codRespuesta: '98' }) }]);
+    await consultarEstadoGre('../otro-recurso?x=1', CREDENCIALES, { accessToken: 'tok' });
+    expect(peticiones[0]!.url).toBe(
+      'https://api-cpe.sunat.gob.pe/v1/contribuyente/gem/comprobantes/envios/..%2Fotro-recurso%3Fx%3D1',
+    );
+  });
+
   test('envío con error (codRespuesta 99): expone numError/desError', async () => {
     mockearFetch([
       {

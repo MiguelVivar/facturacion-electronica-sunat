@@ -49,7 +49,7 @@ export async function obtenerTokenGre(
     password: credenciales.claveSol,
   });
 
-  const respuestaHttp = await fetch(`${endpoint}/clientessol/${credenciales.clientId}/oauth2/token/`, {
+  const respuestaHttp = await fetch(`${endpoint}/clientessol/${encodeURIComponent(credenciales.clientId)}/oauth2/token/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: cuerpo,
@@ -89,7 +89,7 @@ export async function enviarGuiaRemision(
   const nombreArchivo = nombreComprobante(id);
   const zip = empaquetarXml(xmlFirmado, id);
 
-  const respuestaHttp = await fetch(`${endpoint}/contribuyente/gem/comprobantes/${nombreArchivo}`, {
+  const respuestaHttp = await fetch(`${endpoint}/contribuyente/gem/comprobantes/${encodeURIComponent(nombreArchivo)}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -137,7 +137,7 @@ export async function consultarEstadoGre(
   const endpoint = opciones.endpoint ?? ENDPOINT_CPE_GRE;
   const accessToken = opciones.accessToken ?? (await obtenerTokenGre(credenciales));
 
-  const respuestaHttp = await fetch(`${endpoint}/contribuyente/gem/comprobantes/envios/${numTicket}`, {
+  const respuestaHttp = await fetch(`${endpoint}/contribuyente/gem/comprobantes/envios/${encodeURIComponent(numTicket)}`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}` },
   });
