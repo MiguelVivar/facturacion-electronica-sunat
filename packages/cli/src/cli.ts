@@ -4,6 +4,7 @@ import { comandoCalcular } from './comandos/calcular.js';
 import { comandoGenerarXml } from './comandos/generarXml.js';
 import { comandoFirmar } from './comandos/firmar.js';
 import { comandoEnviar } from './comandos/enviar.js';
+import { comandoEstado } from './comandos/estado.js';
 
 const AYUDA = `sunat-fe — CLI para facturación electrónica SUNAT (Perú)
 
@@ -13,6 +14,7 @@ Comandos:
   generar-xml <datos.json>                Genera el XML UBL 2.1 (SIN FIRMAR) de una Factura/Boleta
   firmar <xml> <clave.pem> <cert.pem>      Firma XML-DSig (ver aviso abajo)
   enviar <xml-firmado> <config.json>       Envía por SOAP al billService de SUNAT (ver aviso abajo)
+  estado <ticket> <config.json>           Sondea un ticket async (Resumen/Baja/Reversión) y descarga su CDR
 
 Ejemplos:
   sunat-fe catalogo factura
@@ -20,6 +22,7 @@ Ejemplos:
   sunat-fe generar-xml datos.json
   sunat-fe firmar factura.xml clave.pem certificado.pem
   sunat-fe enviar factura-firmada.xml config-envio.json
+  sunat-fe estado 20000000001-RC-20260727-1 config-envio.json
 
 AVISO: en pruebas reales contra el entorno BETA de SUNAT, la firma generada por "firmar" fue
 rechazada con "Incorrect reference digest value" — "enviar" sí llega, envía y lee la respuesta
@@ -48,6 +51,9 @@ async function main(): Promise<void> {
       break;
     case 'enviar':
       console.log(await comandoEnviar(resto[0], resto[1]));
+      break;
+    case 'estado':
+      console.log(await comandoEstado(resto[0], resto[1]));
       break;
     case undefined:
     case '--help':
