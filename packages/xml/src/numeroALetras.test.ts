@@ -43,6 +43,12 @@ describe('montoALetras', () => {
     expect(montoALetras(10, 'USD')).toBe('SON DIEZ CON 00/100 DOLARES AMERICANOS');
     expect(montoALetras(10, 'EUR')).toBe('SON DIEZ CON 00/100 EUROS');
   });
+  test('singular en USD cuando la parte entera es 1', () => {
+    expect(montoALetras(1, 'USD')).toBe('SON UNO CON 00/100 DOLAR AMERICANO');
+  });
+  test('USD con céntimos', () => {
+    expect(montoALetras(168, 'USD')).toBe('SON CIENTO SESENTA Y OCHO CON 00/100 DOLARES AMERICANOS');
+  });
   test('moneda fuera de catálogo lanza error', () => {
     expect(() => montoALetras(10, 'GBP')).toThrow();
   });
