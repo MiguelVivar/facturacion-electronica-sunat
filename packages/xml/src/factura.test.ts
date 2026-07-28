@@ -70,6 +70,24 @@ describe('generarXmlFacturaBoleta', () => {
     expect(xml).not.toContain('<ds:SignatureValue>');
   });
 
+  test('Factura en USD (catálogo 02) con ítems gravados + exonerados: moneda y leyenda correctas', () => {
+    const xmlUsd = generarXmlFacturaBoleta({
+      ...datosEjemplo,
+      moneda: 'USD',
+      items: [
+        { cantidad: 1, descripcion: 'Servicio gravado', unidad: 'ZZ', mtoValorUnitario: 100, tipAfeIgv: '10' },
+        { cantidad: 1, descripcion: 'Producto exonerado', unidad: 'NIU', mtoValorUnitario: 50, tipAfeIgv: '20' },
+      ],
+    });
+    expect(etiquetasBalanceadas(xmlUsd)).toBe(true);
+    expect(xmlUsd).toContain('<cbc:DocumentCurrencyCode>USD</cbc:DocumentCurrencyCode>');
+    // gravado 100 (+ IGV 18) + exonerado 50 (sin IGV) = 168.00
+    expect(xmlUsd).toContain('<cbc:PayableAmount currencyID="USD">168.00</cbc:PayableAmount>');
+    expect(xmlUsd).toContain('<cbc:TaxAmount currencyID="USD">18.00</cbc:TaxAmount>');
+    expect(xmlUsd).toContain('<cbc:TaxableAmount currencyID="USD">100.00</cbc:TaxableAmount>');
+    expect(xmlUsd).toContain('SON CIENTO SESENTA Y OCHO CON 00/100 DOLARES AMERICANOS');
+  });
+
   test('un comprobante con varios items y baldes mixtos sigue bien formado', () => {
     const xmlMixto = generarXmlFacturaBoleta({
       ...datosEjemplo,

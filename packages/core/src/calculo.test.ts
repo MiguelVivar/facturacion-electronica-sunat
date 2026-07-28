@@ -65,6 +65,20 @@ describe('calcularCabecera', () => {
     expect(montos.subTotal).toBe(218);
   });
 
+  test('escenario Factura en USD: gravado (100) + exonerado (50), catálogo 02 no afecta el cálculo', () => {
+    // El cálculo de montos es agnóstico a la moneda (ver Item/moneda en sunat-fe-xml); este caso
+    // documenta el escenario de la issue #8 (Factura USD con ítems gravados + exonerados).
+    const { montos } = calcularCabecera([
+      { cantidad: 1, descripcion: 'Gravado USD', unidad: 'ZZ', mtoValorUnitario: 100, tipAfeIgv: '10' },
+      { cantidad: 1, descripcion: 'Exonerado USD', unidad: 'NIU', mtoValorUnitario: 50, tipAfeIgv: '20' },
+    ]);
+    expect(montos.mtoOperGravadas).toBe(100);
+    expect(montos.mtoOperExoneradas).toBe(50);
+    expect(montos.mtoIGV).toBe(18);
+    expect(montos.valorVenta).toBe(150);
+    expect(montos.mtoImpVenta).toBe(168);
+  });
+
   test('redondeo a 2 decimales en cantidades fraccionarias', () => {
     const { items, montos } = calcularCabecera([
       { cantidad: 3, descripcion: 'x', unidad: 'NIU', mtoValorUnitario: 10.005, tipAfeIgv: '10' },
