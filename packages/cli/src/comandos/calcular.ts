@@ -1,18 +1,8 @@
 import { readFile } from 'node:fs/promises';
 
-import { calcularCabecera, type Item } from '@miguelvivar/sunat-fe-core';
+import { calcularCabecera } from '@miguelvivar/sunat-fe-core';
 
-function esItemValido(valor: unknown): valor is Item {
-  if (typeof valor !== 'object' || valor === null) return false;
-  const item = valor as Record<string, unknown>;
-  return (
-    typeof item.cantidad === 'number' &&
-    typeof item.descripcion === 'string' &&
-    typeof item.unidad === 'string' &&
-    typeof item.mtoValorUnitario === 'number' &&
-    typeof item.tipAfeIgv === 'string'
-  );
-}
+import { validarItems } from '../validacion.js';
 
 /**
  * `sunat-fe calcular <items.json>` — lee un arreglo de ítems desde un archivo JSON y
@@ -31,13 +21,9 @@ export async function comandoCalcular(rutaArchivo: string | undefined): Promise<
     throw new Error(`"${rutaArchivo}" no contiene JSON válido.`);
   }
 
-  if (!Array.isArray(datos) || !datos.every(esItemValido)) {
-    throw new Error(
-      'El JSON debe ser un arreglo de ítems: { cantidad, descripcion, unidad, mtoValorUnitario, tipAfeIgv }',
-    );
-  }
+  const itemsValidados = validarItems(datos, rutaArchivo);
 
-  const { items, montos } = calcularCabecera(datos);
+  const { items, montos } = calcularCabecera(itemsValidados);
 
   const lineasItems = items
     .map((it) => `  - ${it.descripcion}: valorVenta=${it.mtoValorVenta} igv=${it.igv}`)

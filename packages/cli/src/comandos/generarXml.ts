@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
 
-import { generarXmlFacturaBoleta, type DatosFacturaBoleta } from '@miguelvivar/sunat-fe-xml';
+import { generarXmlFacturaBoleta } from '@miguelvivar/sunat-fe-xml';
+
+import { validarDatosFacturaBoleta } from '../validacion.js';
 
 /**
  * `sunat-fe generar-xml <datos.json>` — genera el XML UBL 2.1 (SIN FIRMAR) de una Factura/Boleta
@@ -12,13 +14,15 @@ export async function comandoGenerarXml(rutaArchivo: string | undefined): Promis
   }
 
   const contenido = await readFile(rutaArchivo, 'utf-8');
-  let datos: DatosFacturaBoleta;
+  let crudo: unknown;
   try {
-    const crudo = JSON.parse(contenido);
-    datos = { ...crudo, fechaEmision: new Date(crudo.fechaEmision) };
+    crudo = JSON.parse(contenido);
   } catch {
-    throw new Error(`"${rutaArchivo}" no contiene JSON válido o le falta algún campo.`);
+    throw new Error(`"${rutaArchivo}" no contiene JSON válido.`);
   }
+
+  const validado = validarDatosFacturaBoleta(crudo, rutaArchivo);
+  const datos = { ...validado, fechaEmision: new Date(validado.fechaEmision) };
 
   // Deliberadamente sin avisos ni texto extra en el valor de retorno: este comando se usa en
   // pipelines (`generar-xml datos.json > factura.xml` seguido de `firmar factura.xml ...`), y

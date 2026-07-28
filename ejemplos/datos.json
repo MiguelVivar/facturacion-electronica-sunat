@@ -1,17 +1,18 @@
 {
   "tipoDoc": "01",
   "serie": "F001",
-  "correlativo": 1,
+  "correlativo": "1",
   "fechaEmision": "2026-07-27",
   "moneda": "PEN",
   "emisor": {
     "ruc": "20000000001",
-    "rznSocial": "Empresa Emisora S.A.C."
+    "razonSocial": "Empresa Emisora S.A.C.",
+    "direccion": "Av. Javier Prado Este 123, San Isidro, Lima"
   },
   "cliente": {
-    "tipoDoc": "6",
-    "numDoc": "20123456789",
-    "rznSocial": "Distribuidora Andina S.A.C."
+    "tipoDocumento": "6",
+    "numeroDocumento": "20123456789",
+    "razonSocialONombre": "Distribuidora Andina S.A.C."
   },
   "items": [
     {
