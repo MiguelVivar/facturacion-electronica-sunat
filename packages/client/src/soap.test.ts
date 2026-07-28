@@ -1,5 +1,11 @@
 import { describe, expect, test } from 'bun:test';
-import { construirSobreSendBill, interpretarCdr, interpretarRespuestaSendBill } from './soap.js';
+import {
+  construirSobreGetStatus,
+  construirSobreSendBill,
+  interpretarCdr,
+  interpretarRespuestaGetStatus,
+  interpretarRespuestaSendBill,
+} from './soap.js';
 
 describe('construirSobreSendBill', () => {
   test('concatena RUC+usuario en el Username WS-Security', () => {
@@ -47,5 +53,48 @@ describe('interpretarCdr', () => {
 
   test('lanza error si no hay ResponseCode', () => {
     expect(() => interpretarCdr('<Otro/>')).toThrow();
+  });
+});
+
+describe('construirSobreGetStatus', () => {
+  test('incluye el ticket y el Username WS-Security', () => {
+    const sobre = construirSobreGetStatus('20123456789-RC-20260727-1', {
+      ruc: '20123456789',
+      usuario: 'MODDATOS',
+      clave: 'moddatos',
+    });
+    expect(sobre).toContain('<ticket>20123456789-RC-20260727-1</ticket>');
+    expect(sobre).toContain('<wsse:Username>20123456789MODDATOS</wsse:Username>');
+  });
+});
+
+describe('interpretarRespuestaGetStatus', () => {
+  test('ticket ya procesado: extrae statusCode y content (CDR en base64)', () => {
+    const xml = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+      <soapenv:Body><statusResponse><status><statusCode>0</statusCode><content>QkFTRTY0</content></status></statusResponse></soapenv:Body>
+    </soapenv:Envelope>`;
+    const resultado = interpretarRespuestaGetStatus(xml);
+    expect(resultado.statusCode).toBe('0');
+    expect(resultado.contentBase64).toBe('QkFTRTY0');
+    expect(resultado.fault).toBeNull();
+  });
+
+  test('ticket todavía en proceso: statusCode presente pero sin content', () => {
+    const xml = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+      <soapenv:Body><statusResponse><status><statusCode>98</statusCode></status></statusResponse></soapenv:Body>
+    </soapenv:Envelope>`;
+    const resultado = interpretarRespuestaGetStatus(xml);
+    expect(resultado.statusCode).toBe('98');
+    expect(resultado.contentBase64).toBeNull();
+    expect(resultado.fault).toBeNull();
+  });
+
+  test('extrae faultcode/faultstring de un SOAP Fault (p.ej. ticket inexistente)', () => {
+    const xml = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+      <soapenv:Body><soapenv:Fault><faultcode>soapenv:Client.9999</faultcode><faultstring>El ticket no existe</faultstring></soapenv:Fault></soapenv:Body>
+    </soapenv:Envelope>`;
+    const resultado = interpretarRespuestaGetStatus(xml);
+    expect(resultado.contentBase64).toBeNull();
+    expect(resultado.fault).toEqual({ codigo: 'soapenv:Client.9999', mensaje: 'El ticket no existe' });
   });
 });

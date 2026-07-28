@@ -21,3 +21,17 @@ export interface ResultadoEnvio {
   /** XML crudo del CDR (ya desempaquetado del zip), o null si no se recibió CDR. */
   cdrXml: string | null;
 }
+
+export interface ResultadoTicket {
+  /** true si SUNAT todavía está procesando el ticket (aún no hay CDR) — hay que volver a consultar más tarde. */
+  enProceso: boolean;
+  /** Código de estado crudo devuelto por SUNAT (solo diagnóstico; ver `enProceso`/`cdrXml` para el resultado real). */
+  statusCode: string | null;
+  /** true si el CDR trae código 0 (ACEPTADA). Solo significativo cuando enProceso es false. */
+  aceptado: boolean;
+  /** Código del CDR una vez procesado. Null si aún está en proceso o si SUNAT devolvió un SOAP Fault. */
+  codigoCdr: number | null;
+  descripcion: string;
+  /** XML crudo del CDR (ya desempaquetado del zip), o null si aún no está disponible. */
+  cdrXml: string | null;
+}

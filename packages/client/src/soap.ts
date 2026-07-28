@@ -26,6 +26,26 @@ export function construirSobreSendBill(
 </soapenv:Envelope>`;
 }
 
+/** Construye el sobre SOAP 1.1 + WS-Security UsernameToken para getStatus (sondeo de tickets async: Resumen, Baja, Reversión). */
+export function construirSobreGetStatus(ticket: string, credenciales: CredencialesSol): string {
+  const usuarioSoap = `${credenciales.ruc}${credenciales.usuario}`;
+  return `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.sunat.gob.pe" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+  <soapenv:Header>
+    <wsse:Security>
+      <wsse:UsernameToken>
+        <wsse:Username>${usuarioSoap}</wsse:Username>
+        <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">${credenciales.clave}</wsse:Password>
+      </wsse:UsernameToken>
+    </wsse:Security>
+  </soapenv:Header>
+  <soapenv:Body>
+    <ser:getStatus>
+      <ticket>${ticket}</ticket>
+    </ser:getStatus>
+  </soapenv:Body>
+</soapenv:Envelope>`;
+}
+
 function textoDeElemento(doc: Document, nombreLocal: string): string | null {
   const nodos = doc.getElementsByTagName('*');
   for (let i = 0; i < nodos.length; i++) {
@@ -59,6 +79,37 @@ export function interpretarRespuestaSendBill(xmlRespuesta: string): RespuestaSoa
 
   return {
     applicationResponseBase64: textoDeElemento(doc, 'applicationResponse'),
+    fault: null,
+  };
+}
+
+export interface RespuestaSoapGetStatus {
+  /** Código de estado crudo devuelto por SUNAT (p.ej. "0" cuando ya hay CDR). SUNAT no documenta
+   *  un catálogo cerrado de valores intermedios ("en proceso"), así que este cliente no intenta
+   *  interpretarlo — solo lo expone para diagnóstico; ver `content` para saber si ya hay CDR. */
+  statusCode: string | null;
+  /** Base64 del .zip con el CDR, presente solo cuando SUNAT ya terminó de procesar el ticket. */
+  contentBase64: string | null;
+  fault: { codigo: string; mensaje: string } | null;
+}
+
+/** Interpreta la respuesta SOAP cruda de getStatus: éxito (statusCode/content) o SOAP Fault. */
+export function interpretarRespuestaGetStatus(xmlRespuesta: string): RespuestaSoapGetStatus {
+  const doc = new DOMParser().parseFromString(xmlRespuesta, 'text/xml');
+
+  const faultCode = textoDeElemento(doc, 'faultcode');
+  const faultString = textoDeElemento(doc, 'faultstring');
+  if (faultCode || faultString) {
+    return {
+      statusCode: null,
+      contentBase64: null,
+      fault: { codigo: faultCode ?? 'desconocido', mensaje: faultString ?? 'sin mensaje' },
+    };
+  }
+
+  return {
+    statusCode: textoDeElemento(doc, 'statusCode'),
+    contentBase64: textoDeElemento(doc, 'content'),
     fault: null,
   };
 }
